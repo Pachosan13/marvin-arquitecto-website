@@ -92,6 +92,78 @@ export const projects: readonly Project[] = [
       { src: '/RENDER.png', alt: 'Detalle de barra con iluminación puntual', width: 1600, height: 900 },
     ],
   },
+  {
+    title: 'Penthouse en Punta Pacífica con terrazas panorámicas',
+    slug: 'penthouse-punta-pacifica',
+    cover: '/recamara.jpg',
+    coverAlt: 'Dormitorio principal con vista panorámica y acabados cálidos',
+    tags: ['apartamentos', 'luxury', 'interiorismo'],
+    brief:
+      'Renovación total de penthouse de 360 m² con terrazas panorámicas, spa privado y sistema domótico para una familia que viaja con frecuencia.',
+    location: 'Punta Pacífica, Ciudad de Panamá',
+    area: '360 m²',
+    year: '2024',
+    scope: ['Interiorismo', 'Domótica', 'Construcción llave en mano', 'Styling final'],
+    gallery: [
+      { src: '/recamara.jpg', alt: 'Dormitorio principal con cabecero a medida y vistas a la bahía', width: 1600, height: 900 },
+      { src: '/carrusel/carrusel6.jpg', alt: 'Área social con terraza y mobiliario contemporáneo', width: 1600, height: 900 },
+      { src: '/Render1.png', alt: 'Cocina abierta con isla de cuarzo y luminarias lineales', width: 1600, height: 900 },
+    ],
+  },
+  {
+    title: 'Oficina creativa para agencia en Costa del Este',
+    slug: 'oficina-creativa-costa-del-este',
+    cover: '/oficina2.jpg',
+    coverAlt: 'Recepción de oficina creativa con iluminación cálida y logo suspendido',
+    tags: ['oficinas', 'comercial', 'branding'],
+    brief:
+      'Diseño colaborativo para agencia de marketing con zonas flexibles, phone booths acústicos y branding inmersivo.',
+    location: 'Costa del Este, Ciudad de Panamá',
+    area: '210 m²',
+    year: '2023',
+    scope: ['Programación espacial', 'Ingeniería MEP', 'Construcción interior', 'Branding ambiental'],
+    gallery: [
+      { src: '/oficina2.jpg', alt: 'Lobby con paneles de madera y mostrador escultórico', width: 1600, height: 900 },
+      { src: '/oficina1.jpg', alt: 'Sala de reuniones con vidrio acanalado y luz cálida', width: 1600, height: 900 },
+      { src: '/oficina.jpg', alt: 'Área colaborativa con escritorios compartidos y vegetación', width: 1600, height: 900 },
+    ],
+  },
+  {
+    title: 'Casa de playa en Santa Clara con vista al Pacífico',
+    slug: 'casa-playa-santa-clara',
+    cover: '/carrusel/carrusel4.jpg',
+    coverAlt: 'Terraza de casa de playa con piscina infinita y mar al fondo',
+    tags: ['casas', 'playa', 'interior-exterior'],
+    brief:
+      'Proyecto de segunda residencia que integra terrazas, piscina y suites privadas con ventilación cruzada y materiales resistentes al ambiente salino.',
+    location: 'Santa Clara, Panamá',
+    area: '520 m²',
+    year: '2022',
+    scope: ['Arquitectura', 'Paisajismo', 'Interiorismo', 'Gestión de obra'],
+    gallery: [
+      { src: '/carrusel/carrusel4.jpg', alt: 'Terraza principal con piscina infinita y camastros', width: 1600, height: 900 },
+      { src: '/carrusel/carrusel2.jpg', alt: 'Sala abierta conectada al exterior con mobiliario cálido', width: 1600, height: 900 },
+      { src: '/CASAIV.jpg', alt: 'Pasarela exterior con vegetación tropical', width: 1600, height: 900 },
+    ],
+  },
+  {
+    title: 'Consultorio boutique en San Francisco',
+    slug: 'consultorio-boutique-san-francisco',
+    cover: '/planos.jpg',
+    coverAlt: 'Planos y muestras de materiales sobre una mesa de diseño',
+    tags: ['comercial', 'salud', 'interiores'],
+    brief:
+      'Adaptación de consultorio médico con experiencia tipo spa, circulaciones eficientes y materiales higiénicos de alto diseño.',
+    location: 'San Francisco, Ciudad de Panamá',
+    area: '140 m²',
+    year: '2023',
+    scope: ['Interiorismo', 'Gestión de permisos', 'Control de obra', 'Ambientación final'],
+    gallery: [
+      { src: '/planos.jpg', alt: 'Equipo de arquitectura revisando planos y acabados', width: 1600, height: 900 },
+      { src: '/antesconsultorio.png', alt: 'Sala de espera con iluminación cálida y mobiliario cómodo', width: 1600, height: 900 },
+      { src: '/carrusel/carrusel7.jpg', alt: 'Recepción con madera oscura y detalles dorados', width: 1600, height: 900 },
+    ],
+  },
 ];
 
 export interface Testimonial {

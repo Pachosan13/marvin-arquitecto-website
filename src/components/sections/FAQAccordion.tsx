@@ -5,10 +5,14 @@ interface FAQAccordionProps {
   readonly items: readonly FAQItem[];
   readonly heading: string;
   readonly description?: string;
+  readonly visibleCount?: number;
+  readonly ctaLabel?: string;
+  readonly ctaHref?: string;
 }
 
-function FAQAccordion({ items, heading, description }: FAQAccordionProps) {
-  const [openIndex, setOpenIndex] = useState(0);
+function FAQAccordion({ items, heading, description, visibleCount, ctaHref, ctaLabel }: FAQAccordionProps) {
+  const displayedItems = typeof visibleCount === 'number' ? items.slice(0, visibleCount) : items;
+  const [openIndex, setOpenIndex] = useState(displayedItems.length > 0 ? 0 : -1);
 
   return (
     <section className="bg-[#f8f8f8] py-16">
@@ -18,7 +22,7 @@ function FAQAccordion({ items, heading, description }: FAQAccordionProps) {
           {description ? <p className="text-base text-[#1a1a1a]/70">{description}</p> : null}
         </div>
         <div className="mt-10 divide-y divide-[#1e3a8a]/10 rounded-3xl border border-[#1e3a8a]/10 bg-white">
-          {items.map((item, index) => {
+          {displayedItems.map((item, index) => {
             const isOpen = openIndex === index;
             return (
               <div key={item.question}>
@@ -44,6 +48,16 @@ function FAQAccordion({ items, heading, description }: FAQAccordionProps) {
             );
           })}
         </div>
+        {visibleCount && items.length > visibleCount && ctaHref && ctaLabel ? (
+          <div className="mt-6 flex justify-center">
+            <a
+              href={ctaHref}
+              className="rounded-full border border-primary px-6 py-3 text-sm font-semibold text-primary transition-colors hover:bg-primary hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary"
+            >
+              {ctaLabel}
+            </a>
+          </div>
+        ) : null}
       </div>
     </section>
   );

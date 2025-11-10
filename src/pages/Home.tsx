@@ -1,44 +1,60 @@
-import HeroSection from '../components/sections/HeroSection';
+import HeroShowcase from '../components/HeroShowcase';
+import ProjectsShowcase from '../components/ProjectsShowcase';
 import PainSolutionSection from '../components/sections/PainSolutionSection';
 import ProcessSection from '../components/sections/ProcessSection';
-import ProjectsGrid from '../components/sections/ProjectsGrid';
 import TestimonialsSection from '../components/sections/TestimonialsSection';
 import FAQAccordion from '../components/sections/FAQAccordion';
 import ContactBlock from '../components/sections/ContactBlock';
 import SeoHead from '../components/seo/SeoHead';
-import { blogPosts, processSteps, projects, serviceFaqs, testimonials } from './data/siteContent';
+import { processSteps, projects, serviceFaqs, testimonials } from './data/siteContent';
 
-const localBusinessSchema = {
-  '@context': 'https://schema.org',
-  '@type': ['ProfessionalService', 'LocalBusiness'],
-  name: 'Marvin Pérez de Obaldía · Arquitecto en Panamá',
-  image: 'https://marvin-arquitecto.com/marviper.jpg',
-  url: 'https://marvin-arquitecto.com',
-  telephone: '+50766758035',
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: 'Calle José Gabriel Duque, La Cresta',
-    addressLocality: 'Ciudad de Panamá',
-    addressRegion: 'Panamá',
-    addressCountry: 'PA',
+const heroSlides = [
+  {
+    src: '/carrusel/carrusel2.jpg',
+    alt: 'Sala de estar iluminada de un apartamento remodelado con mobiliario contemporáneo',
   },
-  priceRange: '$$$',
-  areaServed: ['Ciudad de Panamá', 'Costa del Este', 'Clayton', 'Punta Pacífica'],
-  sameAs: ['https://www.instagram.com', 'https://www.facebook.com'],
-  openingHoursSpecification: [
-    {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-      opens: '08:00',
-      closes: '18:00',
-    },
-  ],
-};
+  {
+    src: '/carrusel/carrusel4.jpg',
+    alt: 'Detalle de cocina gourmet con isla en mármol y luminarias suspendidas',
+  },
+  {
+    src: '/carrusel/carrusel6.jpg',
+    alt: 'Área social con ventanales de piso a techo y acabados cálidos',
+  },
+  {
+    src: '/carrusel/carrusel7.jpg',
+    alt: 'Lobby corporativo con revestimientos de madera y mobiliario a medida',
+  },
+  {
+    src: '/Render1.png',
+    alt: 'Render arquitectónico de cocina abierta con iluminación cálida',
+  },
+];
+
+const serviceHighlights = [
+  {
+    title: 'Remodelación de apartamentos',
+    description: 'Interiores llave en mano para Costa del Este, Punta Pacífica y Santa María con acabados boutique.',
+    href: '/servicios/remodelacion-apartamentos',
+  },
+  {
+    title: 'Residencias de autor',
+    description: 'Diseño y ampliaciones integrales que conectan interior y exterior para familias exigentes.',
+    href: '/servicios/remodelacion-casas',
+  },
+  {
+    title: 'Oficinas boutique',
+    description: 'Espacios corporativos estratégicos que reflejan identidad de marca y optimizan operación.',
+    href: '/servicios/remodelacion-oficinas',
+  },
+  {
+    title: 'Llave en mano',
+    description: 'Diseño, coordinación y construcción completa para proyectos residenciales y comerciales.',
+    href: '/servicios/diseno-y-construccion',
+  },
+];
 
 function Home() {
-  const heroDescription =
-    'Acompañamos a familias y empresas de nivel medio-alto en Ciudad de Panamá que necesitan remodelaciones sin sobresaltos, con un arquitecto líder que coordina diseño, permisos y obra llave en mano.';
-
   const pains = [
     {
       pain: 'Incertidumbre con contratistas y presupuestos que cambian cada semana.',
@@ -53,120 +69,79 @@ function Home() {
     {
       pain: 'Diseños que no representan tu estilo de vida o la identidad de tu negocio.',
       solution:
-        'Nuestro proceso inmersivo integra moodboards, renders y muestras físicas para alinear expectativas estéticas, funcionalidad y branding.',
+        'Integramos moodboards, renders y muestras físicas para alinear expectativas estéticas, funcionalidad y branding antes de construir.',
     },
   ];
 
   const faqs = serviceFaqs['remodelacion-apartamentos'];
-
-  const blogHighlights = blogPosts.slice(0, 3);
+  const featuredProjects = projects.slice(0, 6);
 
   return (
     <>
       <SeoHead
-        title="Arquitecto en Panamá | Remodelaciones llave en mano"
-        description="Arquitecto en Panamá especializado en remodelación de apartamentos, casas y oficinas. Diseños llave en mano con presupuesto cerrado, cronograma y garantía."
+        title="Arquitecto en Panamá | Remodelaciones y Diseño | Marvin Pérez"
+        description="Arquitecto en Panamá especializado en remodelaciones residenciales y comerciales llave en mano con control de presupuesto, permisos y acabados premium."
         keywords={['arquitecto panamá', 'arquitecto en panamá', 'remodelación de casas panamá', 'remodelación de apartamentos panamá', 'remodelación de oficinas panamá']}
-        jsonLd={[localBusinessSchema]}
         openGraph={{ type: 'website', image: 'https://marvin-arquitecto.com/marviper.jpg' }}
       />
-      <HeroSection
-        eyebrow="Arquitectura estratégica"
-        heading="Arquitecto en Panamá para remodelaciones llave en mano"
-        subheading="Diseñamos, gestionamos y construimos espacios residenciales y comerciales que aumentan el valor de tu propiedad."
-        description={heroDescription}
-        imageSrc="/RENDER.png"
-        imageAlt="Equipo de arquitectura revisando planos en un espacio moderno"
+      <HeroShowcase
+        eyebrow="Showroom de arquitectura"
+        heading="Arquitecto en Panamá para espacios residenciales y corporativos de alto nivel"
+        subheading="Remodelaciones llave en mano con diseño, permisos y construcción coordinados por un solo equipo."
+        description="Creamos viviendas, oficinas y locales premium en Ciudad de Panamá con cronogramas controlados, reportes semanales y acabados impecables que elevan el valor de tu propiedad."
+        slides={heroSlides}
+        primaryCtaHref="https://wa.me/50766758035?text=Hola%20Marvin%2C%20quiero%20cotizar"
+        secondaryCtaHref="#proyectos"
       />
       <section className="bg-white py-16">
-        <div className="mx-auto grid w-full max-w-6xl gap-10 px-4 lg:grid-cols-[1.1fr_0.9fr]">
-          <article className="space-y-6 text-base leading-7 text-[#1a1a1a]/80">
-            <h3 className="text-2xl font-semibold text-[#1a1a1a]">Remodelaciones premium sin improvisaciones</h3>
+        <div className="mx-auto flex w-full max-w-6xl flex-col gap-10 px-6 lg:flex-row lg:items-start">
+          <div className="space-y-6 text-base leading-7 text-[#1a1a1a]/80 lg:max-w-2xl">
+            <h2 className="text-3xl font-semibold text-[#1a1a1a]">Remodelaciones premium con control total</h2>
             <p>
-              Desde hace más de dos décadas, guiamos a clientes exigentes en Costa del Este, Punta Pacífica, Santa María y el centro financiero de la ciudad. Escuchamos tus aspiraciones y diseñamos soluciones a la medida: reorganizamos espacios, integramos cocinas gourmet, mejoramos climatización y traducimos tu estilo de vida en cada detalle. Nuestro equipo combina arquitectos, interioristas y project managers especializados en proyectos residenciales y comerciales de alto impacto.
+              Durante más de dos décadas, Marvin Pérez de Obaldía ha liderado remodelaciones integrales en Costa del Este, Punta Pacífica, Santa María y el centro financiero de la ciudad. Trabajamos con clientes que buscan resultados predecibles: coordinamos diseño, ingeniería y construcción para que recibas un espacio listo para habitar sin sorpresas.
             </p>
             <p>
-              Sabemos que tu tiempo es limitado. Por eso ofrecemos comunicación constante vía WhatsApp, reportes semanales y visitas virtuales cuando viajas. Coordinamos proveedores certificados, controlamos cronogramas y garantizamos acabados impecables para que solo tengas que decidir sobre diseño, materiales y presupuesto final. Cada entrega incluye manual de mantenimiento, garantías por escrito y acompañamiento post-obra.
+              Nuestro estudio combina gestión estratégica y artesanía. Validamos cada decisión con renders realistas, cronogramas transparentes y proveedores certificados; además, nuestro equipo de obra ejecuta acabados de alto detalle con supervisión diaria.
             </p>
-            <p>
-              Trabajamos con familias que buscan renovar apartamentos con vista a la bahía, empresarios que desean residencias personalizadas en Clayton, y ejecutivos que necesitan oficinas boutique que comuniquen confianza. También atendemos a desarrolladores que desean transformar locales comerciales en destinos memorables, desde restaurantes de autor hasta clínicas especializadas.
-            </p>
-            <p>
-              Nuestra metodología combina tecnología y artesanía. Digitalizamos el proceso con modelos 3D, tableros colaborativos y seguimiento financiero, mientras cuidamos la ejecución en sitio con artesanos idóneos. Esto se traduce en remodelaciones de apartamentos en Panamá listas para habitar, ampliaciones de casas que integran interior y exterior, y oficinas con acústica y cableado oculto que respaldan tu operación.
-            </p>
-            <p>
-              Como arquitecto remodelaciones Panamá, aseguramos que cada decisión responda a confort, rentabilidad y estilo. Seleccionamos materiales duraderos, maximizamos iluminación natural y diseñamos almacenamiento inteligente. También cuidamos detalles regulatorios: normativas de PH, permisos municipales, coordinación con bomberos y seguridad ocupacional. Tu proyecto avanza con orden, transparencia y resultados predecibles.
-            </p>
-            <p>
-              Si inviertes en alquileres de corto plazo o deseas revalorizar una propiedad antes de vender, calculamos retorno estimado y proponemos intervenciones estratégicas. Implementamos soluciones llave en mano para que consigas mayor ocupación, tarifas premium y reseñas impecables. Además, nuestras remodelaciones de oficinas en Panamá incorporan áreas colaborativas, tecnología integrada y experiencias de hospitalidad que motivan a tu equipo e impresionan a clientes.
-            </p>
-            <p>
-              Estamos comprometidos con el diseño responsable. Optimizamos climatización, aislamos ruidos y utilizamos iluminación eficiente. Cuando el proyecto lo permite, incorporamos vegetación, materiales reciclados y estrategias bioclimáticas que reducen costos de operación y elevan la calidad de vida. Coordinamos auditorías técnicas y entregamos documentación completa para certificaciones o inspecciones futuras.
-            </p>
-            <p>
-              Confía en un despacho que entiende tus prioridades: cumplimiento de plazos, control de presupuesto y estética coherente con tu estilo o marca. Te acompañamos desde la primera idea hasta la entrega con olor a nuevo, listas de chequeo y seguimiento post-ocupación para garantizar que todo funcione como esperas.
-            </p>
-          </article>
-          <aside className="space-y-6 rounded-3xl border border-[#1e3a8a]/10 bg-[#f8f8f8] p-6 text-sm text-[#1a1a1a]/80">
-            <h3 className="text-xl font-semibold text-[#1a1a1a]">Servicios destacados</h3>
-            <ul className="space-y-3">
-              <li>
-                <a className="text-[#1e3a8a] underline-offset-4 transition-colors hover:text-[#d4af37]" href="/servicios/remodelacion-apartamentos">
-                  Remodelación de apartamentos en Panamá
-                </a>
-              </li>
-              <li>
-                <a className="text-[#1e3a8a] underline-offset-4 transition-colors hover:text-[#d4af37]" href="/servicios/remodelacion-casas">
-                  Remodelación de casas con ampliación inteligente
-                </a>
-              </li>
-              <li>
-                <a className="text-[#1e3a8a] underline-offset-4 transition-colors hover:text-[#d4af37]" href="/servicios/remodelacion-oficinas">
-                  Oficinas boutique y espacios comerciales memorables
-                </a>
-              </li>
-              <li>
-                <a className="text-[#1e3a8a] underline-offset-4 transition-colors hover:text-[#d4af37]" href="/servicios/diseno-y-construccion">
-                  Diseño y construcción llave en mano en Panamá
-                </a>
-              </li>
-            </ul>
-            <div className="rounded-2xl bg-white p-5 shadow-sm">
-              <p className="text-sm font-semibold text-[#1a1a1a]">Próximas fechas disponibles</p>
-              <p className="mt-2 text-sm">
-                Agenda tu diagnóstico inicial para la semana del {new Date().toLocaleDateString('es-PA', { month: 'long', day: 'numeric' })}.
-              </p>
+            <div>
               <a
-                href="https://wa.me/50766758035?text=Hola%20Marvin%2C%20quiero%20cotizar"
-                className="mt-4 inline-flex items-center justify-center rounded-full bg-[#1e3a8a] px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-[#1e3a8a]/90"
+                href="/servicios"
+                className="inline-flex items-center justify-center rounded-full border border-primary px-6 py-3 text-sm font-semibold text-primary transition-colors hover:bg-primary hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary"
               >
-                Reservar diagnóstico
+                Leer más sobre los servicios
               </a>
             </div>
-            <div className="rounded-2xl border border-[#1e3a8a]/20 p-5">
-              <p className="text-sm font-semibold text-[#1a1a1a]">Últimos artículos</p>
-              <ul className="mt-3 space-y-2">
-                {blogHighlights.map((post) => (
-                  <li key={post.slug}>
-                    <a className="text-sm text-[#1e3a8a] underline-offset-4 transition-colors hover:text-[#d4af37]" href={`/blog/${post.slug}`}>
-                      {post.title}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </aside>
+          </div>
+          <div className="grid flex-1 gap-4 rounded-3xl border border-[#1e3a8a]/10 bg-[#f8f8f8] p-6 text-sm text-[#1a1a1a]/80 sm:grid-cols-2">
+            {serviceHighlights.map((service) => (
+              <a
+                key={service.title}
+                href={service.href}
+                className="group flex h-full flex-col justify-between rounded-2xl bg-white p-5 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary"
+              >
+                <div className="space-y-3">
+                  <p className="text-xs uppercase tracking-[0.2em] text-secondary">Servicio</p>
+                  <p className="text-lg font-semibold text-[#1a1a1a]">{service.title}</p>
+                  <p className="text-sm text-[#1a1a1a]/70">{service.description}</p>
+                </div>
+                <span className="mt-4 text-xs font-semibold text-primary transition-colors group-hover:text-secondary">
+                  Explorar detalles →
+                </span>
+              </a>
+            ))}
+          </div>
         </div>
       </section>
+      <ProjectsShowcase
+        id="proyectos"
+        projects={featuredProjects}
+        heading="Proyectos recientes con sello de autor"
+        description="Apartamentos frente al mar, residencias familiares y oficinas boutique que entregamos llave en mano en Ciudad de Panamá."
+      />
       <PainSolutionSection
         heading="Dolores frecuentes que resolvemos con arquitectura estratégica"
         description="Transformamos preocupaciones comunes en resultados tangibles para propietarios exigentes de Ciudad de Panamá."
         items={pains}
-      />
-      <ProjectsGrid
-        projects={projects}
-        heading="Proyectos recientes que entregamos llave en mano"
-        description="Apartamentos, casas y oficinas en Ciudad de Panamá que renovamos con planificación integral, control de presupuesto y diseño impecable."
       />
       <ProcessSection
         steps={processSteps}
@@ -181,7 +156,10 @@ function Home() {
       <FAQAccordion
         items={faqs}
         heading="Preguntas frecuentes sobre remodelación de apartamentos en Panamá"
-        description="Resolvemos dudas frecuentes antes de iniciar tu proyecto para que tomes decisiones con certeza."
+        description="Respondemos las dudas clave antes de iniciar tu proyecto para que tomes decisiones con certeza."
+        visibleCount={3}
+        ctaLabel="Ver todas las preguntas"
+        ctaHref="/servicios/remodelacion-apartamentos"
       />
       <ContactBlock />
     </>
