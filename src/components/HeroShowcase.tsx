@@ -10,7 +10,6 @@ interface HeroShowcaseProps {
   readonly eyebrow: string;
   readonly heading: string;
   readonly subheading: string;
-  readonly description: string;
   readonly slides: readonly HeroSlide[];
   readonly primaryCtaHref: string;
   readonly secondaryCtaHref: string;
@@ -20,7 +19,6 @@ function HeroShowcase({
   eyebrow,
   heading,
   subheading,
-  description,
   slides,
   primaryCtaHref,
   secondaryCtaHref,
@@ -101,21 +99,22 @@ function HeroShowcase({
             />
           );
         })}
-        <div className="absolute inset-0 bg-black/45" aria-hidden />
+        <div className="absolute inset-0 bg-black/40" aria-hidden />
       </div>
 
-      <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-10 px-6 py-14 lg:flex-row lg:items-end">
-        <div className="max-w-2xl space-y-6">
-          <p className="text-sm uppercase tracking-[0.35em] text-secondary">{eyebrow}</p>
-          <h2 id="home-hero-heading" className="text-4xl font-semibold leading-tight text-white sm:text-5xl">
-            {heading}
-          </h2>
-          <p className="text-lg font-medium text-secondary/90">{subheading}</p>
-          <p className="max-w-xl text-base text-white/85">{description}</p>
-          <div className="flex flex-col items-start gap-4 sm:flex-row">
+      <div className="relative z-10 mx-auto w-full max-w-6xl px-6 py-16">
+        <div className="max-w-3xl space-y-8">
+          <div className="space-y-4">
+            <p className="text-xs uppercase tracking-[0.35em] text-secondary">{eyebrow}</p>
+            <h2 id="home-hero-heading" className="text-4xl font-semibold leading-tight text-white sm:text-5xl">
+              {heading}
+            </h2>
+            <p className="text-lg font-medium text-white/85 sm:text-xl">{subheading}</p>
+          </div>
+          <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
             <a
               href={primaryCtaHref}
-              className="inline-flex items-center justify-center rounded-full bg-secondary px-6 py-3 text-sm font-semibold text-text shadow-lg transition-transform hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+              className="inline-flex items-center justify-center rounded-full bg-secondary px-6 py-3 text-sm font-semibold text-white shadow-lg transition-transform hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
             >
               Agendar visita (sin costo)
             </a>
@@ -126,10 +125,8 @@ function HeroShowcase({
               Ver proyectos
             </a>
           </div>
-          <LocationBadge />
-        </div>
-        <div className="w-full max-w-xl rounded-3xl border border-white/20 bg-black/30 p-6 backdrop-blur">
-          <dl className="grid grid-cols-2 gap-6 text-sm uppercase text-white/70">
+          <LocationBadge variant="dark" />
+          <dl className="flex flex-wrap gap-6 text-sm uppercase text-white/80">
             {badges.map((badge) => (
               <div key={badge.label} className="space-y-1">
                 <dt className="text-xs tracking-wide text-white/60">{badge.label}</dt>

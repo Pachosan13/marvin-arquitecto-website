@@ -26,8 +26,8 @@ const heroSlides = [
     alt: 'Lobby corporativo con revestimientos de madera y mobiliario a medida',
   },
   {
-    src: '/Render1.png',
-    alt: 'Render arquitectónico de cocina abierta con iluminación cálida',
+    src: '/oficina2.jpg',
+    alt: 'Sala de reuniones corporativa con paneles de madera y vista a la ciudad de Panamá',
   },
 ];
 
@@ -87,8 +87,7 @@ function Home() {
       <HeroShowcase
         eyebrow="Showroom de arquitectura"
         heading="Arquitecto en Panamá para espacios residenciales y corporativos de alto nivel"
-        subheading="Remodelaciones llave en mano con diseño, permisos y construcción coordinados por un solo equipo."
-        description="Creamos viviendas, oficinas y locales premium en Ciudad de Panamá con cronogramas controlados, reportes semanales y acabados impecables que elevan el valor de tu propiedad."
+        subheading="Diseño, obra y supervisión llave en mano para proyectos que hablan de tu marca."
         slides={heroSlides}
         primaryCtaHref="https://wa.me/50766758035?text=Hola%20Marvin%2C%20quiero%20cotizar"
         secondaryCtaHref="#proyectos"
