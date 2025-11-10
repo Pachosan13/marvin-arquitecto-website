@@ -11,23 +11,23 @@ import { processSteps, projects, serviceFaqs, testimonials } from './data/siteCo
 const heroSlides = [
   {
     src: '/carrusel/carrusel2.jpg',
-    alt: 'Sala de estar iluminada de un apartamento remodelado con mobiliario contemporáneo',
+    alt: 'Sala de estar remodelada con mobiliario contemporáneo y luz natural en Ciudad de Panamá',
   },
   {
     src: '/carrusel/carrusel4.jpg',
-    alt: 'Detalle de cocina gourmet con isla en mármol y luminarias suspendidas',
+    alt: 'Lobby corporativo en madera y cristal diseñado por Marvin Pérez de Obaldía',
   },
   {
     src: '/carrusel/carrusel6.jpg',
-    alt: 'Área social con ventanales de piso a techo y acabados cálidos',
+    alt: 'Área social con acabados cálidos y ventanales de piso a techo en Panamá',
   },
   {
-    src: '/carrusel/carrusel7.jpg',
-    alt: 'Lobby corporativo con revestimientos de madera y mobiliario a medida',
+    src: '/oficina1.jpg',
+    alt: 'Oficina ejecutiva con diseño contemporáneo y mobiliario a medida en Ciudad de Panamá',
   },
   {
-    src: '/oficina2.jpg',
-    alt: 'Sala de reuniones corporativa con paneles de madera y vista a la ciudad de Panamá',
+    src: '/CASAIV.jpg',
+    alt: 'Residencia familiar con integración interior-exterior remodelada en Panamá',
   },
 ];
 
@@ -85,12 +85,11 @@ function Home() {
         openGraph={{ type: 'website', image: 'https://marvin-arquitecto.com/marviper.jpg' }}
       />
       <HeroShowcase
-        eyebrow="Showroom de arquitectura"
-        heading="Arquitecto en Panamá para espacios residenciales y corporativos de alto nivel"
-        subheading="Diseño, obra y supervisión llave en mano para proyectos que hablan de tu marca."
+        heading="Arquitecto en Panamá para espacios que se sienten impecables"
+        subheading="Residencial y corporativo. Diseño + construcción llave en mano."
         slides={heroSlides}
         primaryCtaHref="https://wa.me/50766758035?text=Hola%20Marvin%2C%20quiero%20cotizar"
-        secondaryCtaHref="#proyectos"
+        secondaryCtaHref="/proyectos"
       />
       <section className="bg-white py-16">
         <div className="mx-auto flex w-full max-w-6xl flex-col gap-10 px-6 lg:flex-row lg:items-start">

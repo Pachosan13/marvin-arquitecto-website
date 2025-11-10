@@ -1,5 +1,4 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import LocationBadge from './ui/LocationBadge';
 
 interface HeroSlide {
   readonly src: string;
@@ -7,7 +6,6 @@ interface HeroSlide {
 }
 
 interface HeroShowcaseProps {
-  readonly eyebrow: string;
   readonly heading: string;
   readonly subheading: string;
   readonly slides: readonly HeroSlide[];
@@ -15,69 +13,60 @@ interface HeroShowcaseProps {
   readonly secondaryCtaHref: string;
 }
 
-function HeroShowcase({
-  eyebrow,
-  heading,
-  subheading,
-  slides,
-  primaryCtaHref,
-  secondaryCtaHref,
-}: HeroShowcaseProps) {
+const AUTO_PLAY_INTERVAL = 6000;
+
+function HeroShowcase({ heading, subheading, slides, primaryCtaHref, secondaryCtaHref }: HeroShowcaseProps) {
   const [activeIndex, setActiveIndex] = useState(0);
-  const isPaused = useRef(false);
+  const timerRef = useRef<number | null>(null);
   const hasMultipleSlides = slides.length > 1;
 
+  const prefersReducedMotion = useMemo(() => {
+    if (typeof window === 'undefined') {
+      return false;
+    }
+    return window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches ?? false;
+  }, []);
+
   useEffect(() => {
-    if (!hasMultipleSlides) {
+    if (!hasMultipleSlides || prefersReducedMotion) {
       return () => undefined;
     }
 
-    const interval = setInterval(() => {
-      if (!isPaused.current) {
-        setActiveIndex((prev) => (prev + 1) % slides.length);
-      }
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, [hasMultipleSlides, slides.length]);
-
-  useEffect(() => {
-    function handleKeyDown(event: KeyboardEvent) {
-      if (!hasMultipleSlides) {
-        return;
-      }
-      if (event.key === 'ArrowLeft') {
-        event.preventDefault();
-        setActiveIndex((prev) => (prev - 1 + slides.length) % slides.length);
-      } else if (event.key === 'ArrowRight') {
-        event.preventDefault();
-        setActiveIndex((prev) => (prev + 1) % slides.length);
-      }
+    if (timerRef.current !== null) {
+      window.clearInterval(timerRef.current);
     }
+    timerRef.current = window.setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % slides.length);
+    }, AUTO_PLAY_INTERVAL);
 
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [hasMultipleSlides, slides.length]);
+    return () => {
+      if (timerRef.current) {
+        window.clearInterval(timerRef.current);
+      }
+    };
+  }, [hasMultipleSlides, prefersReducedMotion, slides.length]);
 
-  const badges = useMemo(
-    () => [
-      { label: 'Experiencia', value: '20+ años' },
-      { label: 'Proyectos entregados', value: '150' },
-      { label: 'Satisfacción promedio', value: '98%' },
-      { label: 'Tiempo de respuesta', value: '24 h' },
-    ],
+  const socialProof = useMemo(
+    () => ['20+ años', '150 proyectos', '98% satisfacción', 'Respuesta en 24 h'],
     [],
   );
 
   return (
     <section
-      className="relative isolate flex h-[68vh] min-h-[520px] w-full items-end overflow-hidden bg-black text-white"
       aria-labelledby="home-hero-heading"
+      className="relative isolate flex h-[72vh] min-h-[520px] w-full items-center overflow-hidden bg-black text-white"
       onMouseEnter={() => {
-        isPaused.current = true;
+        if (timerRef.current) {
+          window.clearInterval(timerRef.current);
+          timerRef.current = null;
+        }
       }}
       onMouseLeave={() => {
-        isPaused.current = false;
+        if (hasMultipleSlides && !prefersReducedMotion && timerRef.current === null) {
+          timerRef.current = window.setInterval(() => {
+            setActiveIndex((prev) => (prev + 1) % slides.length);
+          }, AUTO_PLAY_INTERVAL);
+        }
       }}
     >
       <div className="absolute inset-0">
@@ -94,61 +83,61 @@ function HeroShowcase({
                 isActive ? 'opacity-100' : 'opacity-0'
               }`}
               loading={index === 0 ? 'eager' : 'lazy'}
-              fetchPriority={index === 0 ? 'high' : undefined}
-              decoding="async"
+              // @ts-expect-error fetchPriority aún no está en las definiciones de React
+              fetchPriority={index === 0 ? 'high' : 'auto'}
+              decoding={index === 0 ? 'sync' : 'async'}
             />
           );
         })}
-        <div className="absolute inset-0 bg-black/40" aria-hidden />
+        <div aria-hidden className="absolute inset-0 bg-black/30" />
       </div>
 
-      <div className="relative z-10 mx-auto w-full max-w-6xl px-6 py-16">
-        <div className="max-w-3xl space-y-8">
+      <div className="relative z-10 mx-auto w-full max-w-6xl px-6">
+        <div className="max-w-2xl space-y-8 text-left md:space-y-10">
           <div className="space-y-4">
-            <p className="text-xs uppercase tracking-[0.35em] text-secondary">{eyebrow}</p>
-            <h2 id="home-hero-heading" className="text-4xl font-semibold leading-tight text-white sm:text-5xl">
+            <h2 id="home-hero-heading" className="text-4xl font-semibold tracking-tight text-white md:text-6xl">
               {heading}
             </h2>
-            <p className="text-lg font-medium text-white/85 sm:text-xl">{subheading}</p>
+            <p className="text-lg text-white/85 md:text-xl">{subheading}</p>
           </div>
-          <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
+
+          <div className="flex flex-wrap items-center gap-3 text-sm">
             <a
               href={primaryCtaHref}
-              className="inline-flex items-center justify-center rounded-full bg-secondary px-6 py-3 text-sm font-semibold text-white shadow-lg transition-transform hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+              className="inline-flex min-w-[200px] items-center justify-center rounded-full bg-white px-6 py-3 font-semibold text-gray-900 shadow-lg transition-transform duration-300 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
             >
               Agendar visita (sin costo)
             </a>
             <a
               href={secondaryCtaHref}
-              className="inline-flex items-center justify-center rounded-full border border-white/70 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+              className="inline-flex min-w-[160px] items-center justify-center rounded-full border border-white/70 px-6 py-3 font-semibold text-white transition-colors duration-300 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
             >
               Ver proyectos
             </a>
           </div>
-          <LocationBadge variant="dark" />
-          <dl className="flex flex-wrap gap-6 text-sm uppercase text-white/80">
-            {badges.map((badge) => (
-              <div key={badge.label} className="space-y-1">
-                <dt className="text-xs tracking-wide text-white/60">{badge.label}</dt>
-                <dd className="text-2xl font-semibold text-white">{badge.value}</dd>
-              </div>
+
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs uppercase tracking-[0.2em] text-white/80">
+            {socialProof.map((item) => (
+              <span key={item} className="rounded-full bg-black/40 px-4 py-2">
+                {item}
+              </span>
             ))}
-          </dl>
+          </div>
         </div>
       </div>
 
       {hasMultipleSlides ? (
-        <div className="absolute inset-x-0 bottom-6 z-10 flex items-center justify-center gap-2">
+        <div className="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 items-center gap-2" aria-label="Control de carrusel">
           {slides.map((slide, index) => {
             const isActive = index === activeIndex;
             return (
               <button
                 key={slide.src}
                 type="button"
-                className={`h-2.5 w-2.5 rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2 focus-visible:ring-offset-black ${
-                  isActive ? 'w-8 bg-secondary' : 'bg-white/40'
-                }`}
                 aria-label={`Ver imagen ${index + 1} de ${slides.length}`}
+                className={`h-2 w-6 rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black ${
+                  isActive ? 'bg-white' : 'bg-white/40 hover:bg-white/60'
+                }`}
                 onClick={() => setActiveIndex(index)}
               />
             );
