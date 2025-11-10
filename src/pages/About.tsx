@@ -1,500 +1,137 @@
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { GraduationCap, Building, Award, Calendar, MapPin, Users } from 'lucide-react';
+import HeroSection from '../components/sections/HeroSection';
+import ProcessSection from '../components/sections/ProcessSection';
+import TestimonialsSection from '../components/sections/TestimonialsSection';
+import SeoHead from '../components/seo/SeoHead';
+import { processSteps, testimonials } from './data/siteContent';
 
-// SEO helpers
-function upsertMeta(name: string, content: string) {
-  if (!content) return;
-  let el = document.querySelector(`meta[name="${name}"]`);
-  if (!el) {
-    el = document.createElement("meta");
-    el.setAttribute("name", name);
-    document.head.appendChild(el);
-  }
-  el.setAttribute("content", content);
-}
-
-function upsertProp(prop: string, content: string) {
-  if (!content) return;
-  let el = document.querySelector(`meta[property="${prop}"]`);
-  if (!el) {
-    el = document.createElement("meta");
-    el.setAttribute("property", prop);
-    document.head.appendChild(el);
-  }
-  el.setAttribute("content", content);
-}
-
-function upsertLink(rel: string, href: string) {
-  if (!href) return;
-  let el = document.querySelector(`link[rel="${rel}"]`);
-  if (!el) {
-    el = document.createElement("link");
-    el.setAttribute("rel", rel);
-    document.head.appendChild(el);
-  }
-  el.setAttribute("href", href);
-}
-
-function injectJsonLd(id: string, obj: any) {
-  if (!obj) return;
-  const prev = document.getElementById(id);
-  if (prev) prev.remove();
-  const s = document.createElement("script");
-  s.type = "application/ld+json";
-  s.id = id;
-  s.text = JSON.stringify(obj);
-  document.head.appendChild(s);
-}
-
-const About = () => {
-  useEffect(() => {
-    const title = "Sobre el Arquitecto Marvin Pérez de Obaldía | 25+ años transformando espacios en Panamá";
-    const description = "Conoce la trayectoria del Arq. Marvin Pérez De Obaldía. 25+ años de experiencia en remodelaciones, diseño arquitectónico y construcción en Ciudad de Panamá.";
-    const url = `${window.location.origin}/sobre-el-arquitecto`;
-
-    document.title = title;
-    upsertMeta("description", description);
-    upsertLink("canonical", url);
-
-    upsertProp("og:title", title);
-    upsertProp("og:description", description);
-    upsertProp("og:type", "website");
-    upsertProp("og:url", url);
-    upsertProp("/marviper.png");
-
-    upsertMeta("twitter:card", "summary_large_image");
-    upsertMeta("twitter:title", title);
-    upsertMeta("twitter:description", description);
-    upsertMeta("twitter:image", "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?w=1200&auto=format&fit=crop");
-
-    // JSON-LD for Person and WebPage
-    injectJsonLd("jsonld-person", {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Marvin Pérez De Obaldía",
-      "jobTitle": "Arquitecto",
-      "worksFor": {
-        "@type": "LocalBusiness",
-        "name": "Marvin Pérez de Obaldía - Arquitecto",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Ciudad de Panamá",
-          "addressCountry": "PA"
-        }
-      },
-      "alumniOf": {
-        "@type": "University",
-        "name": "Universidad de Panamá"
-      },
-      "knowsAbout": [
-        "Arquitectura",
-        "Remodelaciones y Construcciones en General",
-        "Desarrollo de Planos / Autocad",
-        "Diseños Arquitectónicos – Anteproyectos",
-        "Diseño de Interiores",
-        "Cálculo de Presupuestos",
-        "Mantenimientos Generales"
-      ],
-      "areaServed": "Ciudad de Panamá",
-      "nationality": "Panameño"
-    });
-
-    injectJsonLd("jsonld-webpage", {
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      "name": title,
-      "description": description,
-      "url": url,
-      "breadcrumb": {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Inicio",
-            "item": `${window.location.origin}/`
-          },
-          {
-            "@type": "ListItem",
-            "position": 2,
-            "name": "Sobre el Arquitecto",
-            "item": url
-          }
-        ]
-      }
-    });
-  }, []);
-
-  const education = [
-    {
-      period: "1993 – 1998", 
-      institution: "Universidad de Panamá",
-      degree: "Licenciatura en Arquitectura",
-      icon: GraduationCap
-    },
-    {
-      period: "1987 – 1992",
-      institution: "Colegio De La Salle",
-      degree: "Bachiller en Ciencias, Letras y Filosofía (Secundaria)",
-      icon: Award
-    },
-    {
-      period: "1980 – 1986",
-      institution: "Colegio De La Salle",
-      degree: "Educación Primaria",
-      icon: Award
-    }
-  ];
-
-  const experience = [
-    {
-      period: "2003 – 2025",
-      company: "Independiente",
-      role: "Arquitecto Principal",
-      description: "Construcciones en general, diseños arquitectónicos y desarrollos de anteproyectos, confección y desarrollo de planos, remodelaciones generales y diseño de interiores en residencias, oficinas, consultorios, locales comerciales, etc.",
-      icon: Building
-    },
-    {
-      period: "2001 – 2003",
-      company: "Oficina del Casco Antiguo (Ministerio de la Presidencia)",
-      role: "Coordinador y Supervisor de Proyectos",
-      description: "Coordinador y supervisor de proyectos de restauración, elaboración de planos para proyectos de restauración, cálculos de presupuestos, inspecciones de obras, evaluaciones de proyectos, administración de obras de construcción y personal.",
-      icon: Building
-    },
-    {
-      period: "2001",
-      company: "Arte y Dimensiones, S.A.",
-      role: "Desarrollador de Proyectos",
-      description: "Desarrollos de planos y anteproyectos, diseños particulares y presentaciones digitales de proyectos arquitectónicos.",
-      icon: Building
-    },
-    {
-      period: "1999 – 2000",
-      company: "Sistemas Energéticos de Panamá",
-      role: "Dibujante de Planos Electro-Mecánicos",
-      description: "Dibujante de planos Electro-Mecánicos (Proyecto Urbanización Costa del Este, Colegio San Agustín y Sub-Estaciones Eléctricas), inspecciones de proyectos eléctricos, sub estaciones eléctricas, etc.",
-      icon: Building
-    },
-    {
-      period: "1998 – 1999",
-      company: "Sistemas Energéticos de Panamá",
-      role: "Dibujante de Planos Electro-Mecánicos",
-      description: "Dibujante de planos Electro-Mecánicos (Proyecto Termo-Eléctrica de Bahía Las Minas, Colón), levantamientos de campo, inspecciones generales.",
-      icon: Building
-    },
-    {
-      period: "1997 – 1998",
-      company: "Ingelmec, S.A.",
-      role: "Especialista en Presupuestos",
-      description: "Cálculo de presupuesto de obras, preparación de licitaciones, inspección y administración de proyectos de construcción.",
-      icon: Building
-    },
-    {
-      period: "1996",
-      company: "Arq. Leopoldo Pérez E.",
-      role: "Asistente de Proyectos",
-      description: "Apoyo en el desarrollo de proyectos arquitectónicos y supervisión de obras bajo la dirección del arquitecto titular.",
-      icon: Building
-    },
-    {
-      period: "1995 – 1996",
-      company: "Conart, S.A. / Arq. Adolfo Ortíz",
-      role: "Especialista en Presentaciones",
-      description: "Presentaciones artísticas de proyectos arquitectónicos, anteproyectos y maquetas.",
-      icon: Building
-    }
-  ];
-
-  const specialties = [
-    "Remodelaciones y Construcciones en General",
-    "Desarrollo de Planos / Autocad",
-    "Diseños Arquitectónicos – Anteproyectos",
-    "Asesoría en Decoración y Diseño de Interiores",
-    "Cálculo de Presupuestos",
-    "Trabajos de mantenimientos generales en residencias"
-  ];
-
-  return (
-    <div className="bg-bg text-text-hi">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden rounded-b-2xl">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: 'url(/marviper.png)'
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent" />
-        
-        <div className="relative max-w-6xl mx-auto px-4 py-24">
-          <div className="max-w-3xl">
-            <h1 className="text-4xl md:text-6xl font-serif text-white mb-6">
-              Arq. Marvin Pérez De Obaldía
-            </h1>
-            <p className="text-xl text-white/90 mb-6 leading-relaxed">
-              25+ años transformando espacios en Ciudad de Panamá con diseño funcional, 
-              presupuestos transparentes y entregas puntuales.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <Link
-                to="/agenda"
-                className="bg-cta hover:bg-cta-hover text-white px-8 py-3 rounded-lg font-semibold transition-colors duration-200"
-              >
-                Agendar consulta
-              </Link>
-              <a
-                href="https://wa.me/50700000000?text=Hola%20Marvin%2C%20quiero%20conocer%20más%20sobre%20tu%20experiencia"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="border-2 border-white text-white hover:bg-white hover:text-text-hi px-8 py-3 rounded-lg font-semibold transition-all duration-200"
-              >
-                WhatsApp
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Introduction */}
-      <section className="py-16 bg-section">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-heading-2 font-serif text-text-hi mb-6">
-              Experiencia que transforma espacios
-            </h2>
-            <p className="text-body text-text-lo leading-relaxed mb-8">
-              Arquitecto panameño con más de 30 años de experiencia especializado en construcciones 
-              generales, diseños arquitectónicos, remodelaciones integrales y diseño de interiores. 
-              Graduado de la Universidad de Panamá en 1998, ha desarrollado una metodología única que 
-              combina diseño funcional con control riguroso de tiempos y presupuestos.
-            </p>
-            
-            {/* Key Stats */}
-            <div className="grid sm:grid-cols-3 gap-8">
-              <div className="bg-white rounded-xl p-6 border border-divider">
-                <div className="text-3xl font-bold text-cta mb-2">30+</div>
-                <div className="text-text-lo">Años de experiencia</div>
-              </div>
-              <div className="bg-white rounded-xl p-6 border border-divider">
-                <div className="text-3xl font-bold text-cta mb-2">300+</div>
-                <div className="text-text-lo">Proyectos completados</div>
-              </div>
-              <div className="bg-white rounded-xl p-6 border border-divider">
-                <div className="text-3xl font-bold text-cta mb-2">98%</div>
-                <div className="text-text-lo">Clientes satisfechos</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Professional Experience */}
-      <section className="py-16 bg-bg">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="max-w-5xl mx-auto">
-            <h2 className="text-heading-2 font-serif text-text-hi mb-12 text-center">
-              Trayectoria profesional
-            </h2>
-            
-            <div className="space-y-8">
-              {experience.map((exp, index) => (
-                <div
-                  key={index}
-                  className="bg-white rounded-2xl p-8 border border-divider hover:shadow-lg transition-shadow duration-300"
-                >
-                  <div className="flex items-start gap-6">
-                    <div className="flex-shrink-0">
-                      <div className="w-12 h-12 bg-cta/10 rounded-xl flex items-center justify-center">
-                        <exp.icon className="w-6 h-6 text-cta" />
-                      </div>
-                    </div>
-                    
-                    <div className="flex-1">
-                      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-4">
-                        <div>
-                          <h3 className="text-heading-4 font-serif text-text-hi mb-1">
-                            {exp.role}
-                          </h3>
-                          <div className="text-cta font-semibold">
-                            {exp.company}
-                          </div>
-                        </div>
-                        <div className="bg-section px-4 py-2 rounded-full text-sm font-medium text-text-lo mt-2 lg:mt-0">
-                          {exp.period}
-                        </div>
-                      </div>
-                      
-                      <p className="text-text-lo leading-relaxed">
-                        {exp.description}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Education & Specialties */}
-      <section className="py-16 bg-section">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="max-w-5xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-12">
-              {/* Education */}
-              <div>
-                <h2 className="text-heading-2 font-serif text-text-hi mb-8">
-                  Formación académica y profesional
-                </h2>
-                
-                <div className="space-y-6">
-                  {education.map((edu, index) => (
-                    <div
-                      key={index}
-                      className="bg-white rounded-xl p-6 border border-divider"
-                    >
-                      <div className="flex items-start gap-4">
-                        <div className="flex-shrink-0">
-                          <div className="w-10 h-10 bg-cta/10 rounded-lg flex items-center justify-center">
-                            <edu.icon className="w-5 h-5 text-cta" />
-                          </div>
-                        </div>
-                        
-                        <div className="flex-1">
-                          <div className="text-sm text-cta font-semibold mb-1">
-                            {edu.period}
-                          </div>
-                          <h3 className="text-heading-4 font-serif text-text-hi mb-2">
-                            {edu.degree}
-                          </h3>
-                          <div className="text-text-lo">
-                            {edu.institution}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Specialties */}
-              <div>
-                <h2 className="text-heading-2 font-serif text-text-hi mb-8">
-                  Actividades profesionales
-                </h2>
-                
-                <div className="bg-white rounded-2xl p-8 border border-divider">
-                  <p className="text-body text-text-lo mb-6 leading-relaxed">
-                    Servicios especializados desarrollados a lo largo de más de tres décadas 
-                    de práctica profesional en el mercado panameño.
-                  </p>
-                  
-                  <div className="grid gap-3">
-                    {specialties.map((specialty, index) => (
-                      <div
-                        key={index}
-                        className="flex items-center gap-3 p-3 bg-section rounded-lg"
-                      >
-                        <div className="w-2 h-2 bg-cta rounded-full flex-shrink-0" />
-                        <span className="text-text-hi font-medium">
-                          {specialty}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Philosophy & Approach */}
-      <section className="py-16 bg-bg">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-heading-2 font-serif text-text-hi mb-6">
-              Filosofía de trabajo
-            </h2>
-            <div className="bg-white rounded-2xl p-8 border border-divider">
-              <p className="text-body text-text-lo leading-relaxed mb-6">
-                "Cada proyecto es una oportunidad de mejorar la calidad de vida de las personas. 
-                Mi enfoque combina funcionalidad, estética y viabilidad económica para crear 
-                espacios que realmente transformen la experiencia diaria de quienes los habitan. 
-                Con más de 30 años de experiencia, he aprendido que el éxito radica en la 
-                atención al detalle y el compromiso con la excelencia."
-              </p>
-              
-              <div className="grid sm:grid-cols-3 gap-6 mt-8">
-                <div className="text-center">
-                  <Users className="w-8 h-8 text-cta mx-auto mb-3" />
-                  <h3 className="text-heading-4 font-serif text-text-hi mb-2">
-                    Enfoque humano
-                  </h3>
-                  <p className="text-sm text-text-lo">
-                    Diseños centrados en las necesidades reales de cada familia
-                  </p>
-                </div>
-                
-                <div className="text-center">
-                  <Award className="w-8 h-8 text-cta mx-auto mb-3" />
-                  <h3 className="text-heading-4 font-serif text-text-hi mb-2">
-                    Calidad garantizada
-                  </h3>
-                  <p className="text-sm text-text-lo">
-                    Materiales de primera y supervisión técnica constante
-                  </p>
-                </div>
-                
-                <div className="text-center">
-                  <Calendar className="w-8 h-8 text-cta mx-auto mb-3" />
-                  <h3 className="text-heading-4 font-serif text-text-hi mb-2">
-                    Compromiso temporal
-                  </h3>
-                  <p className="text-sm text-text-lo">
-                    Cronogramas realistas con entregas puntuales
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-16 bg-section">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="bg-white rounded-2xl p-8 border border-divider">
-              <h2 className="text-heading-2 font-serif text-text-hi mb-4">
-                ¿Listo para transformar tu espacio?
-              </h2>
-              <p className="text-body text-text-lo mb-8">
-                Con más de 30 años de experiencia, estoy aquí para hacer realidad tu proyecto 
-                con la calidad y transparencia que me caracterizan.
-              </p>
-              
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link
-                  to="/agenda"
-                  className="bg-cta hover:bg-cta-hover text-white px-8 py-3 rounded-lg font-semibold transition-colors duration-200"
-                >
-                  Agendar visita técnica
-                </Link>
-                <Link
-                  to="/"
-                  className="border-2 border-cta text-cta hover:bg-cta hover:text-white px-8 py-3 rounded-lg font-semibold transition-all duration-200"
-                >
-                  Ver servicios
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-  );
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Marvin Pérez de Obaldía',
+  jobTitle: 'Arquitecto',
+  alumniOf: 'Universidad de Panamá',
+  url: 'https://marvin-arquitecto.com/sobre',
+  image: 'https://marvin-arquitecto.com/marviper.jpg',
+  worksFor: {
+    '@type': 'ProfessionalService',
+    name: 'Estudio Marvin Pérez de Obaldía',
+  },
+  sameAs: ['https://www.instagram.com', 'https://www.facebook.com'],
 };
+
+function About() {
+  return (
+    <>
+      <SeoHead
+        title="Sobre el arquitecto Marvin Pérez de Obaldía | Arquitecto en Panamá"
+        description="Conoce la trayectoria de Marvin Pérez de Obaldía, arquitecto en Panamá especializado en remodelaciones premium, diseño interior y proyectos llave en mano."
+        keywords={['arquitecto panamá', 'arquitecto en panamá', 'arquitecto remodelaciones panamá']}
+        jsonLd={[personSchema]}
+        openGraph={{ type: 'profile', image: 'https://marvin-arquitecto.com/marviper.jpg' }}
+      />
+      <HeroSection
+        eyebrow="Trayectoria"
+        heading="Arquitecto en Panamá con visión humana y estratégica"
+        subheading="Marvin Pérez de Obaldía lidera un estudio boutique que combina detalle artesanal, gestión rigurosa y acompañamiento cercano."
+        description="Más de 20 años creando espacios memorables para familias y negocios en Ciudad de Panamá."
+        imageSrc="/marviper.jpg"
+        imageAlt="Retrato del arquitecto Marvin Pérez de Obaldía en estudio de diseño"
+        ctaLabel="Agenda mentoría de proyecto"
+        secondaryCtaLabel="Descarga portafolio completo"
+      />
+      <section className="bg-white py-16">
+        <div className="mx-auto grid w-full max-w-6xl gap-10 px-4 lg:grid-cols-[1.1fr_0.9fr]">
+          <article className="space-y-6 text-base leading-7 text-[#1a1a1a]/80">
+            <h3 className="text-2xl font-semibold text-[#1a1a1a]">Historia y propósito</h3>
+            <p>
+              Desde sus primeros años colaborando con despachos internacionales, Marvin entendió que la arquitectura debía ir más allá de planos y renders. Su objetivo siempre ha sido mejorar la vida de las personas que habitan los espacios y proteger la inversión de quienes confían en su equipo. Tras liderar proyectos residenciales y comerciales en Costa del Este y Punta Pacífica, fundó su propio estudio para ofrecer una atención personalizada de principio a fin.
+            </p>
+            <p>
+              El estudio integra arquitectura, interiorismo y construcción bajo un mismo contrato llave en mano. Esto permite que los clientes tomen decisiones informadas, con un interlocutor único que coordina especialistas, proveedores y autoridades. Marvin lidera personalmente la etapa conceptual, revisa cada entrega técnica y participa en las reuniones clave con familias, juntas directivas y administradores de PH.
+            </p>
+            <p>
+              Su enfoque se basa en escuchar historias, analizar hábitos y traducir aspiraciones en soluciones concretas: cocinas que promueven reuniones familiares, terrazas bioclimáticas para disfrutar de la ciudad, oficinas flexibles que conectan cultura corporativa y productividad. Cada proyecto inicia con entrevistas en profundidad, estudios de iluminación y diagnóstico del inmueble. Luego se definen estrategias que contemplan estilo, presupuesto y tiempos realistas.
+            </p>
+            <p>
+              Marvin es miembro activo del Colegio de Arquitectos de Panamá y ha participado en foros sobre renovación urbana y tendencias de hospitality. Además, colabora con diseñadores de iluminación, ingenieros estructurales y especialistas en domótica para integrar tecnología sin sacrificar calidez. Su filosofía es clara: espacios bellos que también funcionan con precisión quirúrgica.
+            </p>
+            <p>
+              El compromiso del estudio con la transparencia se refleja en reportes semanales, cronogramas accesibles en la nube y visitas guiadas a obra. Los clientes reciben comparativos de materiales, alternativas de inversión y asesoría en garantías para que cada decisión esté respaldada por datos. Gracias a este enfoque, el 80 % de los nuevos proyectos proviene de referidos directos y familias que amplían su portafolio inmobiliario.
+            </p>
+            <p>
+              La visión de Marvin también incluye el impacto social: fomenta la contratación de artesanos locales, promueve capacitación en obra y apoya proyectos de vivienda digna en comunidades vulnerables. Cada año destina horas pro bono para asesorar a emprendedores gastronómicos y creativos que necesitan transformar locales con recursos limitados pero alto potencial.
+            </p>
+          </article>
+          <aside className="space-y-6 rounded-3xl border border-[#1e3a8a]/10 bg-[#f8f8f8] p-6 text-sm text-[#1a1a1a]/80">
+            <div>
+              <h3 className="text-xl font-semibold text-[#1a1a1a]">Credenciales</h3>
+              <ul className="mt-4 space-y-3">
+                <li>Arquitecto idóneo, Junta Técnica de Ingeniería y Arquitectura</li>
+                <li>Especialización en interiorismo residencial, Barcelona</li>
+                <li>Certificación en gestión de proyectos PMP®</li>
+                <li>Miembro Colegio de Arquitectos de Panamá</li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold text-[#1a1a1a]">Reconocimientos</h3>
+              <ul className="mt-4 space-y-3">
+                <li>Premio a Mejor Remodelación Residencial · 2022</li>
+                <li>Distinción Diseño de Oficinas Boutique · 2023</li>
+                <li>Invitado a Panel de Hospitalidad Sostenible · 2024</li>
+              </ul>
+            </div>
+            <div className="rounded-2xl bg-white p-5 shadow-sm">
+              <p className="text-sm font-semibold text-[#1a1a1a]">Valores del estudio</p>
+              <ul className="mt-3 space-y-2">
+                <li>Escucha empática y acompañamiento cercano</li>
+                <li>Transparencia financiera y contratos claros</li>
+                <li>Diseño atemporal con detalles artesanales</li>
+                <li>Responsabilidad social y ambiental</li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+      </section>
+      <section className="bg-[#f8f8f8] py-16">
+        <div className="mx-auto w-full max-w-6xl px-4">
+          <h3 className="text-2xl font-semibold text-[#1a1a1a]">Equipo multidisciplinario</h3>
+          <p className="mt-4 text-base text-[#1a1a1a]/70">
+            Marvin lidera un equipo de 12 profesionales que incluye arquitectos, diseñadores de interiores, coordinadores de obra, especialistas en iluminación y supervisores de calidad. Cada rol tiene protocolos claros para garantizar que tu proyecto avance con precisión. Utilizamos herramientas digitales para coordinar proveedores y documentar cambios en tiempo real, evitando sorpresas y retrasos.
+          </p>
+          <div className="mt-8 grid gap-6 md:grid-cols-3">
+            <div className="rounded-3xl bg-white p-6 shadow-sm">
+              <p className="text-sm font-semibold text-[#1a1a1a]">Arquitectura & Concepto</p>
+              <p className="mt-2 text-sm text-[#1a1a1a]/70">
+                Desarrollo de estrategias espaciales, moodboards, renders y selección de materiales que reflejen tu estilo de vida o ADN corporativo.
+              </p>
+            </div>
+            <div className="rounded-3xl bg-white p-6 shadow-sm">
+              <p className="text-sm font-semibold text-[#1a1a1a]">Coordinación técnica</p>
+              <p className="mt-2 text-sm text-[#1a1a1a]/70">
+                Gestión de planos, permisos, ingenierías, presupuesto llave en mano y seguimiento financiero con reportes semanales.
+              </p>
+            </div>
+            <div className="rounded-3xl bg-white p-6 shadow-sm">
+              <p className="text-sm font-semibold text-[#1a1a1a]">Construcción & entrega</p>
+              <p className="mt-2 text-sm text-[#1a1a1a]/70">
+                Supervisión en sitio, control de calidad, instalación de mobiliario y acompañamiento post-obra con garantía escrita.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <ProcessSection
+        steps={processSteps}
+        heading="Proceso de trabajo dirigido por Marvin"
+        description="Cada etapa tiene responsables definidos y comunicación constante para asegurar que tu proyecto cumpla objetivos estéticos, financieros y de tiempo."
+      />
+      <TestimonialsSection
+        testimonials={testimonials}
+        heading="Qué dicen los clientes sobre Marvin"
+        description="Historias de familias, directivos y emprendedores que confiaron en el liderazgo del estudio."
+      />
+    </>
+  );
+}
 
 export default About;
