@@ -175,21 +175,39 @@ export interface Testimonial {
 export const testimonials: readonly Testimonial[] = [
   {
     quote:
-      'Marvin y su equipo se encargaron de absolutamente todo. Recibimos reportes semanales, visualizamos cada avance y el presupuesto se mantuvo intacto. Nuestra casa hoy se siente como un hotel boutique.',
-    author: 'Patricia Gómez',
-    role: 'Residencial · Costa del Este',
+      'El talento y dedicación de Marvin hacen cada proyecto único y recomendable.',
+    author: 'Dra. Martha Martínez',
+    role: 'Clayton',
   },
   {
     quote:
-      'Lograron traducir nuestra cultura corporativa en un espacio que inspira. La entrega fue puntual y sin contratiempos, incluso coordinando mudanza y cableado de data sin detener la operación.',
-    author: 'Gabriel Díaz',
-    role: 'Socio Director · Despacho Legal en Obarrio',
+      'Marvin es un arquitecto responsable, honesto y comprometido, que entrega proyectos seguros, ordenados y de absoluta confianza.',
+    author: 'Amada Suarez',
+    role: 'Town Center',
   },
   {
     quote:
-      'Traían propuestas claras, renders realistas y un cronograma cumplido al día. Los clientes nos felicitan por el ambiente del restaurante y la acústica controlada.',
-    author: 'María Laura Sánchez',
-    role: 'Propietaria · Restaurante Casco Antiguo',
+      'Marvin realizó remodelaciones respetando diseño y presupuesto, con resultados extraordinarios.',
+    author: 'Dra. Carmen Amada Pinzón',
+    role: 'Clínica Dermoestética',
+  },
+  {
+    quote:
+      'Diseño funcional y acabados impecables. Recomiendo sus servicios sin dudarlo.',
+    author: 'Ana Rodríguez',
+    role: 'San Francisco',
+  },
+  {
+    quote:
+      'Excelente profesional y siempre se ha destacado por su compromiso y respeto a los detalles de las obras a él encomendadas.',
+    author: 'Dra. Doria Gutiérrez de Marchena',
+    role: 'Consultorios América',
+  },
+  {
+    quote:
+      'Excelente profesional. Muy creativo con ideas novedosas. Ha estado a cargo de todas las remodelaciones de mi casa y de las oficinas de mis empresas por los últimos 16 años.',
+    author: 'Ing. Eduardo Lima',
+    role: 'Costa del Este · Buenaventura',
   },
 ];
 
