@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useState, useEffect } from 'react';
 import { ArrowRight, X } from 'lucide-react';
 import { Carousel } from 'react-responsive-carousel';

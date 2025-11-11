@@ -1,29 +1,34 @@
-import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
+import WhatsAppButton from './components/WhatsAppButton';
 import Home from './pages/Home';
-import About from './pages/About';
+import Sobre from './pages/Sobre';
+import Servicios from './pages/Servicios';
+import Proyectos from './pages/Proyectos';
+import Contacto from './pages/Contacto';
 import ServiceTemplate from './pages/services/ServiceTemplate';
-import Agenda from './pages/Agenda';
 
-function App() {
+const App = () => {
   return (
     <Router>
       <ScrollToTop />
-      <div className="min-h-screen bg-bg">
+      <div className="min-h-screen bg-base">
         <Header />
         <Routes>
-          <Route path="/sobre-el-arquitecto" element={<About />} />
-          <Route path="/servicios/:slug" element={<ServiceTemplate />} />
-          <Route path="/agenda" element={<Agenda />} />
           <Route path="/" element={<Home />} />
+          <Route path="/sobre" element={<Sobre />} />
+          <Route path="/servicios" element={<Servicios />} />
+          <Route path="/servicios/:slug" element={<ServiceTemplate />} />
+          <Route path="/proyectos" element={<Proyectos />} />
+          <Route path="/contacto" element={<Contacto />} />
         </Routes>
         <Footer />
+        <WhatsAppButton />
       </div>
     </Router>
   );
-}
+};
 
 export default App;

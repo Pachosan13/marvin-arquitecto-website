@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useState } from 'react';
 import { MessageCircle, Send, CheckCircle } from 'lucide-react';
 

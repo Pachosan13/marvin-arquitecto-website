@@ -1,354 +1,278 @@
-import React, { useEffect, useMemo } from "react";
-import { useParams, Link } from "react-router-dom";
-import { useState } from "react";
-import { ChevronDown, ChevronUp, Shield, Eye, Users, Clipboard, Award, Clock, HardHat, CheckCircle, FileCheck, ClipboardCheck, Footprints as Blueprint, Home, Palette, Lightbulb, Box, UserCheck, TrendingUp, Calendar, FileText, GitBranch, Calculator } from "lucide-react";
-import { SERVICE_DATA } from "../../data/services";
+import { Link, useParams } from 'react-router-dom';
+import SeoHead from '../../seo/SeoHead';
+import { breadcrumbSchema, faqSchema, localBusinessSchema } from '../../seo/jsonld';
+import { SERVICE_DATA, type ServiceData } from '../../data/services';
+import { useReveal } from '../../hooks/useReveal';
 
-const C = {
-  bg:"#F7F5F1", section:"#EEE9E2", panel:"#E2D7C8",
-  text:"#2B2F33", mute:"#6C6A65", div:"#DDD5CC", cta:"#6FA27A", ctaH:"#5B8E66"
+const getService = (slug?: string): ServiceData | null => {
+  if (!slug) return null;
+  return (SERVICE_DATA as Record<string, ServiceData | undefined>)[slug] ?? null;
 };
 
-function m(name: string, content: string){ if(!content) return; let el=document.querySelector(`meta[name="${name}"]`); if(!el){el=document.createElement("meta");el.setAttribute("name",name);document.head.appendChild(el);} el.setAttribute("content",content);}
-function p(prop: string, content: string){ if(!content) return; let el=document.querySelector(`meta[property="${prop}"]`); if(!el){el=document.createElement("meta");el.setAttribute("property",prop);document.head.appendChild(el);} el.setAttribute("content",content);}
-function l(rel: string, href: string){ if(!href) return; let el=document.querySelector(`link[rel="${rel}"]`); if(!el){el=document.createElement("link");el.setAttribute("rel",rel);document.head.appendChild(el);} el.setAttribute("href",href);}
-function jsonld(id: string, obj: any){ if(!obj) return; const prev=document.getElementById(id); if(prev) prev.remove(); const s=document.createElement("script"); s.type="application/ld+json"; s.id=id; s.text=JSON.stringify(obj); document.head.appendChild(s);}
-
-export default function ServiceTemplate(){
+const ServiceTemplate = () => {
   const { slug } = useParams<{ slug: string }>();
-  const data = useMemo(()=> (SERVICE_DATA as any)[slug || ''] || null, [slug]);
-  const [openFaqItems, setOpenFaqItems] = useState<number[]>([]);
+  const service = getService(slug);
+  const { ref: painsRef, visible: painsVisible } = useReveal<HTMLDivElement>({ rootMargin: '-80px' });
+  const { ref: scopeRef, visible: scopeVisible } = useReveal<HTMLDivElement>({ rootMargin: '-80px' });
+  const { ref: benefitsRef, visible: benefitsVisible } = useReveal<HTMLDivElement>({ rootMargin: '-80px' });
+  const { ref: casesRef, visible: casesVisible } = useReveal<HTMLDivElement>({ rootMargin: '-80px' });
+  const { ref: testimonialsRef, visible: testimonialsVisible } = useReveal<HTMLDivElement>({ rootMargin: '-80px' });
+  const { ref: faqRef, visible: faqVisible } = useReveal<HTMLDivElement>({ rootMargin: '-80px' });
 
-  const toggleFaqItem = (index: number) => {
-    setOpenFaqItems(prev => 
-      prev.includes(index) 
-        ? prev.filter(i => i !== index)
-        : [...prev, index]
+  if (!service) {
+    return (
+      <main className="section-padding flex min-h-[60vh] items-center justify-center">
+        <div className="rounded-3xl bg-cement px-10 py-14 text-center">
+          <p className="text-2xl font-serif text-dark">Servicio no encontrado.</p>
+          <Link
+            to="/servicios"
+            className="mt-6 inline-flex items-center justify-center rounded-full bg-dark px-6 py-3 text-xs font-semibold uppercase tracking-[0.3em] text-white"
+          >
+            Volver a servicios
+          </Link>
+        </div>
+      </main>
     );
-  };
+  }
 
-  const getIcon = (iconName: string) => {
-    const icons: { [key: string]: React.ComponentType<any> } = {
-      shield: Shield, eye: Eye, users: Users, clipboard: Clipboard, award: Award, clock: Clock,
-      'hard-hat': HardHat, 'check-circle': CheckCircle, 'file-check': FileCheck, 
-      'clipboard-check': ClipboardCheck, blueprint: Blueprint, home: Home, palette: Palette,
-      lightbulb: Lightbulb, box: Box, 'user-check': UserCheck, 'trending-up': TrendingUp,
-      calendar: Calendar, 'file-text': FileText, 'git-branch': GitBranch, calculator: Calculator
-    };
-    return icons[iconName] || Shield;
-  };
-
-  useEffect(()=> {
-    if(!data) return;
-    document.title = data.seo_title || data.service_name;
-    m("description", data.seo_description || "");
-    l("canonical", data.canonical_url || window.location.href);
-    p("og:title", data.seo_title || data.service_name);
-    p("og:description", data.seo_description || "");
-    p("og:type", "website");
-    p("og:url", data.canonical_url || window.location.href);
-    p("og:image", data.og_image || "");
-    m("twitter:card","summary_large_image");
-    m("twitter:title", data.seo_title || data.service_name);
-    m("twitter:description", data.seo_description || "");
-    m("twitter:image", data.og_image || "");
-
-    jsonld("jsonld-bc", {
-      "@context":"https://schema.org","@type":"BreadcrumbList",
-      "itemListElement":[
-        {"@type":"ListItem","position":1,"name":"Inicio","item":`${window.location.origin}/`},
-        {"@type":"ListItem","position":2,"name":"Servicios","item":`${window.location.origin}/servicios/`},
-        {"@type":"ListItem","position":3,"name":data.service_name,"item":data.canonical_url||window.location.href}
-      ]
-    });
-    jsonld("jsonld-svc", {
-      "@context":"https://schema.org","@type":"Service",
-      "name":data.service_name,"serviceType":data.service_name,
-      "areaServed":data.city||"Ciudad de Panamá",
-      "provider":{"@type":"LocalBusiness","name":"Marvin Pérez – Arquitecto en Panamá","areaServed":data.city||"Ciudad de Panamá","telephone":data.phone?`+507 ${data.phone}`:"+507 0000-0000","url":window.location.origin}
-    });
-    if(Array.isArray(data.faqs)&&data.faqs.length){
-      jsonld("jsonld-faq",{"@context":"https://schema.org","@type":"FAQPage","mainEntity":data.faqs.map((x: any)=>({"@type":"Question","name":x.q,"acceptedAnswer":{"@type":"Answer","text":x.a}}))});
-    }
-  },[data]);
-
-  if(!data) return <div style={{minHeight:'60vh'}} className="flex items-center justify-center">Servicio no encontrado.</div>;
-  const wa = data.whatsapp ? `https://wa.me/${data.whatsapp}` : "#";
+  const canonical = service.canonical_url ?? `https://mparquitecto.com/servicios/${slug}`;
+  const gallery = service.case_cards?.map((card) => card.img).filter(Boolean) as string[];
+  const whatsappNumber = service.whatsapp ?? '50766758035';
+  const whatsappUrl = `https://wa.me/${whatsappNumber}`;
 
   return (
-    <div style={{background:C.bg, color:C.text}}>
-      {/* HERO */}
-      <section className="relative overflow-hidden rounded-b-2xl">
-        {/* Hero Background Image */}
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${data.hero_image})` }}
-        />
-        
-        {/* Overlay for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30" />
-        
-        <div className="relative max-w-6xl mx-auto px-4 py-24">
-          <h1 className="text-4xl md:text-6xl font-semibold text-white">{data.seo_title}</h1>
-          <p className="mt-4 max-w-2xl text-white/90">{data.hero_subtitle}</p>
-          <div className="mt-6 flex flex-wrap gap-3">
-            <Link to={`/agenda?service=${encodeURIComponent(data.seo_title)}`} className="px-6 py-3 rounded-xl text-white font-semibold" style={{background:C.cta}} data-gtm="HeroCTA_Click">Agendar visita (48h)</Link>
-            <a href="#cases" className="px-6 py-3 rounded-xl border-2 border-white text-white hover:bg-white hover:text-text-hi font-semibold transition-all duration-200">Ver proyectos</a>
-            {wa && <a href={`${wa}?text=Hola%20Marvin%2C%20quiero%20información%20sobre:%20${encodeURIComponent(data.seo_title)}`} target="_blank" rel="noreferrer" className="px-4 py-3 rounded-xl border-2 border-white text-white hover:bg-white hover:text-text-hi transition-all duration-200">WhatsApp</a>}
-          </div>
-          <div className="mt-6 flex flex-wrap gap-2 text-sm" style={{color:C.mute}}>
-            <span className="border rounded-full px-3 py-1 bg-white/20 backdrop-blur-sm border-white/30 text-white">Presupuesto transparente</span>
-            <span className="border rounded-full px-3 py-1 bg-white/20 backdrop-blur-sm border-white/30 text-white">Entrega a tiempo</span>
-            <span className="border rounded-full px-3 py-1 bg-white/20 backdrop-blur-sm border-white/30 text-white">Garantía de acabados</span>
-          </div>
-        </div>
-      </section>
-
-      {/* PAINS */}
-      <section className="py-12" style={{background:C.section, borderTop:`1px solid ${C.div}`, borderBottom:`1px solid ${C.div}`}}>
-        <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-3 gap-6">
-          {data.pains?.map((p: string,i: number)=>(
-            <div key={i} className="rounded-2xl p-6 border" style={{borderColor:C.div, background:C.panel}}>{p}</div>
-          ))}
-        </div>
-      </section>
-
-      {/* SCOPE */}
-      <section className="py-14">
-        <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-3xl md:text-5xl">Alcance del servicio</h2>
-          <ul className="mt-6 grid md:grid-cols-2 gap-3">
-            {data.scope?.map((s: string,i: number)=>(
-              <li key={i} className="flex items-start gap-2">
-                <span className="mt-2 inline-block h-2 w-2 rounded-full" style={{background:C.cta}}/>
-                <span>{s}</span>
-              </li>
-            ))}
-          </ul>
-          <div className="mt-4 text-sm" style={{color:C.mute}}>Zonas: {(data.zones||[]).join(" · ")}</div>
-        </div>
-      </section>
-
-      {/* BENEFITS SECTION */}
-      {data.benefits && data.benefits.length > 0 && (
-        <section className="py-14" style={{background:C.section, borderTop:`1px solid ${C.div}`, borderBottom:`1px solid ${C.div}`}}>
-          <div className="max-w-6xl mx-auto px-4">
-            <h2 className="text-3xl md:text-5xl mb-4">¿Por qué elegirnos?</h2>
-            <p className="text-lg mb-12" style={{color:C.mute}}>
-              Ventajas que nos diferencian en el mercado panameño
-            </p>
-            
-            {/* Bento Grid Layout */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {data.benefits.map((benefit: any, i: number) => {
-                const IconComponent = getIcon(benefit.icon);
-                // Create different sizes for bento effect
-                const isLarge = i === 0 || i === 3;
-                const gridClass = isLarge ? "md:col-span-2" : "md:col-span-1";
-                
-                return (
-                  <div
-                    key={i}
-                    className={`group rounded-2xl p-6 border transition-all duration-300 hover:shadow-lg hover:scale-105 ${gridClass}`}
-                    style={{borderColor:C.div, background:C.panel}}
-                  >
-                    <div className="flex items-start gap-4">
-                      <div className="flex-shrink-0">
-                        <div 
-                          className="w-12 h-12 rounded-xl flex items-center justify-center transition-colors duration-300"
-                          style={{background: `${C.cta}20`}}
-                        >
-                          <IconComponent className="w-6 h-6" style={{color: C.cta}} />
-                        </div>
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="font-semibold text-lg mb-2 group-hover:text-opacity-90 transition-colors">
-                          {benefit.title}
-                        </h3>
-                        <p className="text-sm leading-relaxed" style={{color:C.mute}}>
-                          {benefit.description}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
+    <>
+      <SeoHead
+        title={service.seo_title ?? service.service_name}
+        description={service.seo_description ?? service.hero_subtitle}
+        canonical={canonical}
+        keywords={[service.primary_keyword, ...(service.secondary_keywords ?? [])].filter(Boolean)}
+        schema={[
+          localBusinessSchema({
+            name: 'Marvin Pérez Arquitecto',
+            description: service.seo_description ?? service.service_name,
+            url: 'https://mparquitecto.com',
+            telephone: service.phone ?? '+50766758035',
+            email: service.email ?? 'hola@mp-arquitecto.com',
+            address: {
+              addressLocality: 'Ciudad de Panamá',
+              addressCountry: 'PA',
+            },
+          }),
+          breadcrumbSchema({
+            items: [
+              { name: 'Inicio', item: 'https://mparquitecto.com/' },
+              { name: 'Servicios', item: 'https://mparquitecto.com/servicios' },
+              { name: service.service_name, item: canonical },
+            ],
+          }),
+          faqSchema({
+            faqs: (service.faqs ?? []).map((faq) => ({ question: faq.q, answer: faq.a })).slice(0, 6),
+          }),
+        ]}
+      />
+      <main className="bg-base">
+        <section className="relative h-[70vh] min-h-[480px] w-full overflow-hidden">
+          <img
+            src={service.hero_image ?? '/carrusel/carrusel4.jpg'}
+            alt={service.service_name}
+            className="absolute inset-0 h-full w-full object-cover"
+            loading="eager"
+            decoding="sync"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/10" aria-hidden="true" />
+          <div className="section-padding relative z-10 flex h-full items-end pb-20">
+            <div className="max-w-3xl text-white">
+              <p className="text-xs uppercase tracking-[0.4em] text-white/70">{service.city}</p>
+              <h1 className="mt-4 text-4xl font-serif leading-[1.1] md:text-5xl">{service.service_name}</h1>
+              <p className="mt-6 max-w-2xl text-lg text-white/80">{service.hero_subtitle}</p>
+              <div className="mt-8 flex flex-wrap gap-4">
+                <a
+                  href={`${whatsappUrl}?text=Hola%20Marvin%2C%20quiero%20cotizar%20${encodeURIComponent(service.service_name)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-full bg-white px-7 py-3 text-xs font-semibold uppercase tracking-[0.3em] text-dark transition hover:bg-accent hover:text-white"
+                >
+                  Agendar reunión
+                </a>
+                <a
+                  href="#alcance"
+                  className="rounded-full border border-white px-7 py-3 text-xs font-semibold uppercase tracking-[0.3em] text-white transition hover:bg-white hover:text-dark"
+                >
+                  Ver alcance
+                </a>
+              </div>
             </div>
           </div>
         </section>
-      )}
-
-      {/* BEFORE/AFTER */}
-      <section id="cases" className="py-14">
-        <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-3 gap-6">
-          {data.cases_ab?.map((c: any,i: number)=>(
-            <figure key={i} className="rounded-2xl overflow-hidden border" style={{borderColor:C.div, background:C.panel}}>
-              <div className="relative h-56">
-                <img src={c.after_img} alt={`${c.title} — después`} className="absolute inset-0 w-full h-full object-cover"/>
-                <div className="absolute inset-0 w-1/2 overflow-hidden" aria-hidden="true">
-                  <img src={c.before_img} alt="" className="w-full h-full object-cover"/>
-                </div>
-              </div>
-              <figcaption className="p-4">
-                <div className="font-semibold">{c.title}</div>
-                <div className="text-sm" style={{color:C.mute}}>{c.zone} · {c.weeks} semanas · Variación {c.variance}</div>
-              </figcaption>
-            </figure>
-          ))}
-        </div>
-      </section>
-
-      {/* PROCESS */}
-      <section className="py-14" style={{background:C.section, borderTop:`1px solid ${C.div}`, borderBottom:`1px solid ${C.div}`}}>
-        <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-3xl md:text-5xl">Proceso</h2>
-          <ol className="mt-6 grid md:grid-cols-5 gap-4">
-            {data.process?.map((s: any,i: number)=>(
-              <li key={i} className="rounded-2xl p-5 border" style={{borderColor:C.div, background:C.panel}}>
-                <div className="text-sm mb-1" style={{color:C.mute}}>Paso {i+1}</div>
-                <div className="font-semibold">{s.step}</div>
-                <div className="text-sm" style={{color:C.mute}}>{s.time}</div>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
-
-      {/* CASE CARDS */}
-      <section className="py-14">
-        <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-3 gap-6">
-          {data.case_cards?.map((c: any,i: number)=>(
-            <figure key={i} className="rounded-2xl overflow-hidden border" style={{borderColor:C.div, background:C.panel}}>
-              <img src={c.img} alt={c.title} className="h-48 w-full object-cover"/>
-              <figcaption className="p-4">
-                <div className="font-semibold">{c.title}</div>
-                <div className="text-sm" style={{color:C.mute}}>{c.metrics}</div>
-              </figcaption>
-            </figure>
-          ))}
-        </div>
-      </section>
-
-      {/* TESTIMONIALS */}
-      <section className="py-14" style={{background:C.section, borderTop:`1px solid ${C.div}`, borderBottom:`1px solid ${C.div}`}}>
-        <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-3 gap-6">
-          {data.testimonials?.map((t: any,i: number)=>(
-            <blockquote key={i} className="rounded-2xl p-6 border" style={{borderColor:C.div, background:C.panel}}>
-              <div className="text-lg">"{t.quote}"</div>
-              <div className="mt-2 text-sm" style={{color:C.mute}}>{t.author}</div>
-            </blockquote>
-          ))}
-        </div>
-      </section>
-
-      {/* MINI FORM */}
-      <section id="book-form" className="py-16">
-        <div className="max-w-3xl mx-auto px-4 rounded-2xl p-6 border" style={{borderColor:C.div, background:C.panel}}>
-          <h2 className="text-3xl md:text-4xl">Cuéntame tu idea y agenda tu visita (48h)</h2>
-          <p className="mt-2" style={{color:C.mute}}>Respuesta en 24–48h por WhatsApp.</p>
-          <form className="grid md:grid-cols-2 gap-4 mt-6" onSubmit={(e)=>{e.preventDefault(); alert("¡Gracias! Te contactaremos por WhatsApp.");}}>
-            <div><label className="text-sm">Nombre</label><input required className="w-full rounded-xl border px-3 py-2" style={{borderColor:C.div}} placeholder="Tu nombre"/></div>
-            <div><label className="text-sm">WhatsApp</label><input required className="w-full rounded-xl border px-3 py-2" style={{borderColor:C.div}} placeholder="507…"/></div>
-            <div><label className="text-sm">Tipo de proyecto</label><select className="w-full rounded-xl border px-3 py-2" style={{borderColor:C.div}}><option>Casa</option><option>Apartamento</option><option>Oficina</option><option>Local comercial</option></select></div>
-            <div><label className="text-sm">Zona</label><select className="w-full rounded-xl border px-3 py-2" style={{borderColor:C.div}}>{(data.zones||[]).map((z: string)=> <option key={z}>{z}</option>)}<option>Otra</option></select></div>
-            <div className="md:col-span-2"><label className="text-sm">Mensaje</label><textarea rows={4} className="w-full rounded-xl border px-3 py-2" style={{borderColor:C.div}} placeholder="Cuéntanos un poco de tu proyecto…"/></div>
-            <div className="md:col-span-2 flex flex-wrap gap-3">
-              <Link to={`/agenda?service=${encodeURIComponent(data.seo_title)}`} className="px-6 py-3 rounded-2xl text-white font-semibold" style={{background:C.cta}} data-gtm="MiniForm_Submit">Agendar visita</Link>
-              {wa !== "#" && <a href={`${wa}?text=Hola%20Marvin%2C%20quiero%20agendar%20una%20visita%20sobre:%20${encodeURIComponent(data.seo_title)}`} target="_blank" rel="noreferrer" className="px-6 py-3 rounded-2xl border font-semibold" style={{borderColor:C.cta}}>Hablar por WhatsApp</a>}
-            </div>
-          </form>
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section className="py-14" style={{background:C.section, borderTop:`1px solid ${C.div}`}}>
-        <div className="max-w-5xl mx-auto px-4">
-          <h2 className="text-3xl md:text-5xl mb-4">Preguntas frecuentes</h2>
-          <p className="text-lg mb-12" style={{color:C.mute}}>
-            Resolvemos las dudas más comunes sobre este servicio
-          </p>
-          
-          <div className="space-y-4">
-            {data.faqs?.map((f: any,i: number)=>(
-              <div
-                key={i}
-                className="rounded-2xl border overflow-hidden transition-all duration-300 hover:shadow-md"
-                style={{borderColor:C.div, background:C.panel}}
-              >
-                <button
-                  onClick={() => toggleFaqItem(i)}
-                  className="w-full px-6 py-5 text-left flex items-center justify-between hover:bg-opacity-50 transition-colors duration-200"
-                  style={{background: openFaqItems.includes(i) ? `${C.cta}10` : 'transparent'}}
-                  aria-expanded={openFaqItems.includes(i)}
-                  aria-controls={`faq-answer-${i}`}
-                >
-                  <h3 className="font-semibold text-lg pr-4">
-                    {f.q}
-                  </h3>
-                  <div className="flex-shrink-0" style={{color: C.cta}}>
-                    {openFaqItems.includes(i) ? (
-                      <ChevronUp className="w-6 h-6" />
-                    ) : (
-                      <ChevronDown className="w-6 h-6" />
-                    )}
-                  </div>
-                </button>
-                
-                <div
-                  id={`faq-answer-${i}`}
-                  className={`px-6 transition-all duration-300 ${
-                    openFaqItems.includes(i) 
-                      ? 'pb-5 opacity-100' 
-                      : 'pb-0 opacity-0 h-0 overflow-hidden'
-                  }`}
-                >
-                  <div className="border-t pt-5" style={{borderColor:C.div}}>
-                    <p className="leading-relaxed" style={{color:C.mute}}>
-                      {f.a}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-          
-          {/* CTA after FAQ */}
-          <div className="text-center mt-12">
-            <div className="rounded-2xl p-8 border" style={{borderColor:C.div, background:C.panel}}>
-              <h3 className="text-2xl md:text-3xl mb-4">
-                ¿Tienes alguna otra pregunta?
-              </h3>
-              <p className="mb-6" style={{color:C.mute}}>
-                Contactanos directamente para resolver cualquier duda específica sobre tu proyecto
+        <section className="section-padding py-20">
+          <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+            <div
+              ref={painsRef}
+              className={`space-y-6 transition-all duration-700 ${
+                painsVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+              }`}
+            >
+              <h2 className="text-3xl font-serif text-dark">Lo que resolvemos</h2>
+              <p className="text-base text-muted">
+                Coordinamos cada etapa de la remodelación: planificación, diseño, permisos, compras y dirección de obra. Entregamos
+                reportes semanales y control de presupuesto sin sorpresas.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link 
-                  to={`/agenda?service=${encodeURIComponent(data.seo_title)}`} 
-                  className="px-6 py-3 rounded-2xl text-white font-semibold transition-colors duration-200" 
-                  style={{background:C.cta}}
-                >
-                  Agendar consulta
-                </Link>
-                {data.whatsapp && (
-                  <a
-                    href={`https://wa.me/${data.whatsapp}?text=Hola%20Marvin%2C%20tengo%20una%20pregunta%20sobre%20${encodeURIComponent(data.seo_title)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="border-2 px-6 py-3 rounded-2xl font-semibold transition-all duration-200 hover:text-white"
-                    style={{borderColor:C.cta, color:C.cta}}
-                    onMouseEnter={(e) => e.currentTarget.style.background = C.cta}
-                    onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
-                  >
-                    Preguntar por WhatsApp
-                  </a>
-                )}
+              <div className="grid gap-4 md:grid-cols-2">
+                {service.pains?.map((pain) => (
+                  <div key={pain} className="rounded-3xl bg-cement p-6 text-sm text-dark/80">
+                    {pain}
+                  </div>
+                ))}
               </div>
             </div>
+            <div className="rounded-[36px] bg-cement p-8">
+              <p className="text-sm uppercase tracking-[0.3em] text-dark/70">Zonas de cobertura</p>
+              <p className="mt-3 text-base text-dark">{service.zones?.join(' · ')}</p>
+              <p className="mt-6 text-sm uppercase tracking-[0.3em] text-dark/70">Tiempo estimado</p>
+              <ul className="mt-3 space-y-2 text-base text-dark/80">
+                {service.process?.slice(0, 4).map((step) => (
+                  <li key={step.step} className="flex items-center justify-between rounded-2xl bg-white/60 px-4 py-3">
+                    <span>{step.step}</span>
+                    <span className="text-sm uppercase tracking-[0.3em] text-muted">{step.time}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
-          
-          <div className="mt-8"><Link to="/" className="underline">Volver al inicio</Link></div>
-        </div>
-      </section>
-    </div>
+        </section>
+        <section id="alcance" className="bg-cement py-20">
+          <div className="section-padding">
+            <div
+              ref={scopeRef}
+              className={`mx-auto max-w-5xl transition-all duration-700 ${
+                scopeVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+              }`}
+            >
+              <h2 className="text-3xl font-serif text-dark">Alcance llave en mano</h2>
+              <ul className="mt-8 grid gap-4 md:grid-cols-2">
+                {service.scope?.map((item) => (
+                  <li key={item} className="flex items-start gap-3 rounded-3xl bg-white px-5 py-4 text-base text-muted">
+                    <span className="mt-1 inline-block h-2.5 w-2.5 rounded-full bg-accent" aria-hidden="true" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+        {service.benefits?.length ? (
+          <section className="section-padding py-20">
+            <div
+              ref={benefitsRef}
+              className={`mx-auto max-w-6xl transition-all duration-700 ${
+                benefitsVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+              }`}
+            >
+              <h2 className="text-3xl font-serif text-dark">Beneficios clave</h2>
+              <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+                {service.benefits.map((benefit) => (
+                  <div key={benefit.title} className="rounded-[28px] bg-white p-8 shadow-soft-lg">
+                    <h3 className="text-xl font-serif text-dark">{benefit.title}</h3>
+                    <p className="mt-3 text-base text-muted">{benefit.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        ) : null}
+        {gallery.length ? (
+          <section className="section-padding py-20">
+            <div
+              ref={casesRef}
+              className={`mx-auto max-w-6xl transition-all duration-700 ${
+                casesVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+              }`}
+            >
+              <h2 className="text-3xl font-serif text-dark">Casos destacados</h2>
+              <div className="mt-8 grid gap-6 md:grid-cols-3">
+                {service.case_cards?.map((card) => (
+                  <figure key={card.title} className="overflow-hidden rounded-[32px] bg-white shadow-soft-lg">
+                    <img
+                      src={card.img}
+                      alt={card.title}
+                      className="h-56 w-full object-cover"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <figcaption className="space-y-2 p-6">
+                      <p className="text-sm uppercase tracking-[0.3em] text-muted">{card.metrics}</p>
+                      <h3 className="text-xl font-serif text-dark">{card.title}</h3>
+                    </figcaption>
+                  </figure>
+                ))}
+              </div>
+            </div>
+          </section>
+        ) : null}
+        {service.testimonials?.length ? (
+          <section className="bg-cement py-20">
+            <div
+              ref={testimonialsRef}
+              className={`section-padding transition-all duration-700 ${
+                testimonialsVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+              }`}
+            >
+              <div className="mx-auto max-w-5xl">
+                <h2 className="text-3xl font-serif text-dark">Testimonios</h2>
+                <div className="mt-8 grid gap-6 md:grid-cols-2">
+                  {service.testimonials.map((testimonial) => (
+                    <blockquote key={testimonial.author} className="rounded-[28px] bg-white p-8 text-base text-dark/80 shadow-soft-lg">
+                      “{testimonial.quote}”
+                      <footer className="mt-4 text-sm uppercase tracking-[0.3em] text-muted">{testimonial.author}</footer>
+                    </blockquote>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+        ) : null}
+        {service.faqs?.length ? (
+          <section className="section-padding py-20">
+            <div
+              ref={faqRef}
+              className={`mx-auto max-w-5xl transition-all duration-700 ${
+                faqVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+              }`}
+            >
+              <h2 className="text-3xl font-serif text-dark">Preguntas frecuentes</h2>
+              <div className="mt-8 space-y-6">
+                {service.faqs.slice(0, 6).map((faq) => (
+                  <details key={faq.q} className="group rounded-[28px] border border-black/10 bg-white p-6 shadow-soft-lg">
+                    <summary className="cursor-pointer text-lg font-serif text-dark">
+                      {faq.q}
+                    </summary>
+                    <p className="mt-4 text-base text-muted leading-relaxed">{faq.a}</p>
+                  </details>
+                ))}
+              </div>
+            </div>
+          </section>
+        ) : null}
+        <section className="section-padding pb-24">
+          <div className="mx-auto max-w-4xl rounded-[32px] bg-dark p-12 text-center text-white">
+            <h2 className="text-3xl font-serif">Agenda tu diagnóstico</h2>
+            <p className="mt-4 text-base text-white/70">
+              Coordinamos una visita técnica en 48 horas para evaluar alcance, presupuesto y cronograma.
+            </p>
+            <a
+              href={`${whatsappUrl}?text=Hola%20Marvin%2C%20quiero%20cotizar%20${encodeURIComponent(service.service_name)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-6 inline-flex items-center justify-center rounded-full bg-white px-8 py-3 text-xs font-semibold uppercase tracking-[0.3em] text-dark transition hover:bg-accent hover:text-white"
+            >
+              Reservar visita técnica
+            </a>
+          </div>
+        </section>
+      </main>
+    </>
   );
-}
+};
+
+export default ServiceTemplate;
