@@ -28,11 +28,11 @@ const projects = [
       duration: '6 semanas',
       budgetVariation: '0%',
       beforeImage: '/antesconsultorio.png',
-      afterImage: '/IMG_20220422_174902.jpg',
+      afterImage: '/RENDER.png',
       alt: 'remodelación consultorio médico antes y después',
       carouselImages: [
         '/antesconsultorio.png',
-        '/IMG_20220422_174902.jpg',
+        '/RENDER.png',
         'towncenter1.jpg',
         'towncenter2.jpg'
       ]
@@ -42,14 +42,14 @@ const projects = [
       location: 'Residencia en Altos del Chase',
       duration: '10 semanas',
       budgetVariation: '+0.8%',
-      beforeImage: '/CASAI.jpg',
+      beforeImage: '/CASA.jpg',
       afterImage: '/CASAIV.jpg',
       alt: 'remodelación casa Altos del Chase antes y después',
       carouselImages: [
-        '/CASAI.jpg',
+        '/CASA.jpg',
         '/recamara.jpg',
         '/CASAIV.jpg',
-        '/CASAIII.jpg',
+        '/CASAIV.jpg',
         '/CHASETERRAZA.jpg',
         '/COCINACHASE.jpg',
       ]

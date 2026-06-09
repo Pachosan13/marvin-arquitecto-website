@@ -13,11 +13,11 @@ const Hero = () => {
 
   const heroImages = [
     {
-      src: '/carrusel/carrusel.jpg',
+      src: '/carrusel/carrusel2.jpg',
       alt: 'Remodealción Completa de baño'
     },
     {
-      src: '/carrusel/carrusel1.jpg',
+      src: '/carrusel/carrusel4.jpg',
       alt: 'Remodealción Completa de Sala'
     },
     {
@@ -25,7 +25,7 @@ const Hero = () => {
       alt: 'Remodealción Completa de Cocina'
     },
     {
-      src: '/carrusel/carrusel3.jpg',
+      src: '/carrusel/carrusel6.jpg',
       alt: 'Remodealción Completa de Cocina'
     },
     {
@@ -73,8 +73,8 @@ const Hero = () => {
                 className="w-full h-full object-cover"
               />
               {/* Individual overlay for each image */}
-              <div className="absolute inset-0 bg-black/45" />
               <div className="absolute inset-0 bg-black/30" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-black/10" />
             </div>
           ))}
         </Carousel>
@@ -89,14 +89,14 @@ const Hero = () => {
             }`}
           >
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif text-white mb-6">
-              <span className="block">Arquitecto en Panamá</span>
-              <span className="block text-cta">Que Transforma Tu Espacio</span>
-              <span className="block">Y Tu Vida.</span>
+              <span className="block">Arquitectura y remodelación</span>
+              <span className="block font-light italic text-white/80">que transforma tu espacio</span>
+              <span className="block">en Ciudad de Panamá.</span>
             </h1>
-            
-            <p className="text-body text-white mb-8 max-w-2xl">
-              Diseño funcional + obra con control de tiempos y presupuesto para 
-              <strong className="text-text-hi"> casas, apartamentos y oficinas</strong> en Ciudad de Panamá.
+
+            <p className="text-body text-white/90 mb-8 max-w-2xl">
+              Diseño funcional + obra con control de tiempos y presupuesto para
+              <strong className="text-white font-semibold"> casas, apartamentos y oficinas</strong>. Más de 20 años de experiencia.
             </p>
 
             {/* CTAs */}
@@ -116,7 +116,7 @@ const Hero = () => {
               
               <button
                 onClick={() => scrollToSection('before-after')}
-                className="border-2 border-white bg-white/20 backdrop-blur-sm hover:bg-white/30 text-text-hi px-8 py-4 rounded-lg font-semibold text-base transition-all duration-200"
+                className="border-2 border-white bg-white/10 backdrop-blur-sm hover:bg-white hover:text-text-hi text-white px-8 py-4 rounded-lg font-semibold text-base transition-all duration-200"
               >
                 Ver proyectos
               </button>

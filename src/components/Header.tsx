@@ -53,19 +53,20 @@ const Header = () => {
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-center items-center py-4 relative">
-            {/* Logo */}
-            <Link to="/" className="flex-shrink-0">
-              <img 
-                src="/mplogo.jpg" 
-                alt="Marvin Pérez - Arquitecto en Panamá" 
-                className="h-12 sm:h-14 w-auto hover:opacity-80 transition-opacity duration-200"
-              />
+            {/* Wordmark tipografico (reemplaza logo roto /mplogo.jpg) */}
+            <Link to="/" className="flex-shrink-0 text-center hover:opacity-80 transition-opacity duration-200">
+              <span className={`block font-serif text-lg sm:text-2xl leading-none tracking-wide transition-colors ${isScrolled ? 'text-text-hi' : 'text-white'}`}>
+                Marvin Pérez de Obaldía
+              </span>
+              <span className={`block text-[10px] sm:text-xs tracking-[0.3em] uppercase mt-1.5 transition-colors ${isScrolled ? 'text-text-lo' : 'text-white/80'}`}>
+                Arquitecto · Panamá
+              </span>
             </Link>
 
             {/* Menu button - visible on all screen sizes */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="absolute right-0 text-text-hi hover:text-cta transition-colors"
+              className={`absolute right-0 transition-colors ${isScrolled ? 'text-text-hi' : 'text-white'} hover:text-wood`}
               aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
             >
               {isMenuOpen ? (
@@ -162,7 +163,7 @@ const Header = () => {
               >
                 <div className="flex flex-col items-end space-y-4">
                   <a
-                    href="https://wa.me/50700000000?text=Hola%20Marvin%2C%20quiero%20agendar%20una%20visita%20técnica"
+                    href="https://wa.me/50766758035?text=Hola%20Marvin%2C%20quiero%20agendar%20una%20visita%20técnica"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center px-6 py-3 border-2 border-cta text-cta hover:bg-cta hover:text-white transition-all duration-300 rounded-lg font-semibold text-lg"
@@ -184,20 +185,6 @@ const Header = () => {
           </div>
         </div>
       )}
-
-      {/* Keyframes for cascade animation */}
-      <style jsx>{`
-        @keyframes slideInRight {
-          from {
-            opacity: 0;
-            transform: translateX(50px);
-          }
-          to {
-            opacity: 1;
-            transform: translateX(0);
-          }
-        }
-      `}</style>
     </>
   );
 };

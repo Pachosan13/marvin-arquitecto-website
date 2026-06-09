@@ -7,14 +7,14 @@ export const SERVICE_DATA = {
     slug: "/servicios/remodelacion-casas-apartamentos-panama/",
     city: "Ciudad de Panamá",
     zones: ["El Cangrejo","Bella Vista","San Francisco","Costa del Este"],
-    phone: "6569-9957",
-    whatsapp: "50765699957",
-    email: "hola@mp-arquitecto.com",
+    phone: "6675-8035",
+    whatsapp: "50766758035",
+    email: "marvinper@mparquitecto.com",
     seo_title: "Remodelación de Casas y Apartamentos en Panamá | Diseño + Obra sin sorpresas",
     seo_description: "Reformas integrales con presupuesto transparente y entregas a tiempo. Agenda tu visita técnica en 48h.",
     canonical_url: "https://mparquitecto.com/servicios/remodelacion-casas-apartamentos-panama/",
-    og_image: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=1200&auto=format&fit=crop",
-    hero_image: "/CASAIII.jpg",
+    og_image: "/CASA.jpg",
+    hero_image: "/CASAIV.jpg",
     hero_subtitle: "Diseño + obra con control de tiempos y presupuesto.",
     pains: [
       "Evita retrasos y sobrecostos con alcance y cronograma claros.",
@@ -55,9 +55,9 @@ export const SERVICE_DATA = {
     ],
     scope: ["Anteproyecto + renders","Presupuesto cerrado","Planos y permisos","Ejecución y supervisión","Entrega + garantías"],
     cases_ab: [
-      { title:"Apartamento en Ph Vitri", zone:"El Cangrejo", weeks:"6", variance:"0%", before_img:"/AntyDespcases/phvitri.jpg", after_img:"/AntyDespcases/phvitri1.jpg" },
-      { title:"Casa en El Chase", zone:"San Francisco", weeks:"10", variance:"+2%", before_img:"/CASAI.jpg", after_img:"/CASAIII.jpg" },
-      { title:"Oficina en Bella Vista", zone:"Bella Vista", weeks:"8", variance:"+1%", before_img:"https://images.unsplash.com/photo-1513694203232-719a280e022f?w=1200&auto=format&fit=crop", after_img:"https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1200&auto=format&fit=crop" }
+      { title:"Apartamento en Ph Vitri", zone:"El Cangrejo", weeks:"6", variance:"0%", before_img:"/AntyDespcases/phvitri.jpg", after_img:"/AntyDespcases/phvitri.jpg" },
+      { title:"Casa en El Chase", zone:"San Francisco", weeks:"10", variance:"+2%", before_img:"/CASA.jpg", after_img:"/CASAIV.jpg" },
+      { title:"Oficina en Bella Vista", zone:"Bella Vista", weeks:"8", variance:"+1%", before_img:"/antesconsultorio.png", after_img:"/oficina.jpg" }
     ],
     process: [
       { step:"Diagnóstico y levantamiento", time:"1 semana" },
@@ -68,7 +68,7 @@ export const SERVICE_DATA = {
     ],
     case_cards: [
       { title:"Cocina  en Betania", metrics:"8 semanas · +20% luz natural", img:"/carrusel/carrusel2.jpg" },
-      { title:"Consultorio en Town Center", metrics:"6 semanas · variación 0%", img:"/IMG_20220422_174902.jpg" },
+      { title:"Consultorio en Town Center", metrics:"6 semanas · variación 0%", img:"/RENDER.png" },
       { title:"Restaurante en Panamá", metrics:"7 semanas · +3 puestos", img:"/AntyDespcases/sushiexpress.jpg" }
     ],
     testimonials: [
@@ -119,14 +119,14 @@ export const SERVICE_DATA = {
     slug: "/servicios/diseno-arquitectonico-panama/",
     city: "Ciudad de Panamá",
     zones: ["El Cangrejo","Bella Vista","San Francisco","Costa del Este"],
-    phone: "6569-9957",
-    whatsapp: "50765699957",
+    phone: "6675-8035",
+    whatsapp: "50766758035",
     email: "marvinper@mparquitecto.com",
     seo_title: "Diseño arquitectónico en Panamá | Anteproyecto, renders y permisos",
     seo_description: "Define tu proyecto con anteproyecto, renders y alcance claro. Te guiamos hasta permisos y presupuesto.",
     canonical_url: "https://mparquitecto.com/servicios/diseno-arquitectonico-panama/",
-    og_image: "https://images.unsplash.com/photo-1523419409543-a5e549c1dc88?w=1200&auto=format&fit=crop",
-    hero_image: "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=1600&auto=format&fit=crop",
+    og_image: "/planos.jpg",
+    hero_image: "/Render1.png",
     hero_subtitle: "Anteproyecto + renders para decidir con certeza.",
     pains: ["Evita cambios costosos definiendo antes de obra.","Renders para validar estilo y funcionalidad.","Planos y permisos listos."],
     benefits: [
@@ -161,9 +161,9 @@ export const SERVICE_DATA = {
       { step:"Entrega", time:"1–2 días" }
     ],
     case_cards: [
-      { title:"Anteproyecto casa San Francisco", metrics:"+2 alternativas de layout", img:"https://images.unsplash.com/photo-1505691723518-36a5ac3b2a59?w=1200&auto=format&fit=crop" },
-      { title:"Renders sala Costa del Este", metrics:"validación de estilo", img:"https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=1200&auto=format&fit=crop" },
-      { title:"Layout oficina Bella Vista", metrics:"+3 puestos", img:"https://images.unsplash.com/photo-1582582621958-c3d212c9b64f?w=1200&auto=format&fit=crop" }
+      { title:"Anteproyecto casa San Francisco", metrics:"+2 alternativas de layout", img:"/CASAIV.jpg" },
+      { title:"Renders sala Costa del Este", metrics:"validación de estilo", img:"/recamara.jpg" },
+      { title:"Layout oficina Bella Vista", metrics:"+3 puestos", img:"/oficina2.jpg" }
     ],
     testimonials: [{ quote:"El anteproyecto nos dio claridad y evitó retrabajos.", author:"Ana – San Francisco" }],
     faqs: [
@@ -200,12 +200,12 @@ export const SERVICE_DATA = {
     secondary_keywords:["obra civil","ampliaciones","acabados"],
     slug:"/servicios/construccion-general-panama/",
     city:"Ciudad de Panamá", zones:["El Cangrejo","Bella Vista","San Francisco","Costa del Este"],
-    phone:"6569-9957", whatsapp:"50765699957", email:"hola@mp-arquitecto.com",
+    phone:"6675-8035", whatsapp:"50766758035", email:"marvinper@mparquitecto.com",
     seo_title:"Construcción general en Panamá | Residencial y comercial",
     seo_description:"Obra civil, ampliaciones y acabados con control de tiempos y costos. Solicita una propuesta.",
     canonical_url:"https://mparquitecto.com/servicios/construccion-general-panama/",
-    og_image:"https://images.unsplash.com/photo-1501045661006-fcebe0257c3f?w=1200&auto=format&fit=crop",
-    hero_image:"https://images.unsplash.com/photo-1501045661006-fcebe0257c3f?w=1600&auto=format&fit=crop",
+    og_image:"/RENDER.png",
+    hero_image:"/RENDER.png",
     hero_subtitle:"Ejecución con presupuesto cerrado y supervisión constante.",
     pains:["Control de tiempos y costos.","Coordinación total de proveedores.","Seguridad y calidad en obra."],
     benefits: [
@@ -273,11 +273,11 @@ export const SERVICE_DATA = {
     secondary_keywords:["planos constructivos","permisos municipio","PH"],
     slug:"/servicios/planos-arquitectonicos-panama/",
     city:"Ciudad de Panamá", zones:["El Cangrejo","Bella Vista","San Francisco","Costa del Este"],
-    phone:"6569-9957", whatsapp:"50765699957", email:"hola@mp-arquitecto.com",
+    phone:"6675-8035", whatsapp:"50766758035", email:"marvinper@mparquitecto.com",
     seo_title:"Planos arquitectónicos en Panamá | Planos constructivos + Permisos",
     seo_description:"Planos sellados y gestión de permisos municipales/PH. Precisión técnica y tiempos claros.",
     canonical_url:"https://mparquitecto.com/servicios/planos-arquitectonicos-panama/",
-    og_image:"https://images.unsplash.com/photo-1523419409543-a5e549c1dc88?w=1200&auto=format&fit=crop",
+    og_image:"/planos.jpg",
     hero_image:"/planos.jpg",
     hero_subtitle:"Documentación lista para construir.",
     pains:["Aprobaciones sin tropiezos.","Coordinación con PH y municipio.","Planos claros para ejecución."],
@@ -346,12 +346,12 @@ export const SERVICE_DATA = {
     secondary_keywords:["diseño de interiores","mobiliario fijo","iluminación"],
     slug:"/servicios/arquitectura-interiores-panama/",
     city:"Ciudad de Panamá", zones:["El Cangrejo","Bella Vista","San Francisco","Costa del Este"],
-    phone:"6569-9957", whatsapp:"50765699957", email:"hola@mp-arquitecto.com",
+    phone:"6675-8035", whatsapp:"50766758035", email:"marvinper@mparquitecto.com",
     seo_title:"Arquitectura de interiores en Panamá | Materiales, iluminación y mobiliario",
     seo_description:"Interiores funcionales y duraderos. Selección de materiales, iluminación y carpintería fija.",
     canonical_url:"https://mparquitecto.com/servicios/arquitectura-interiores-panama/",
-    og_image:"https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=1200&auto=format&fit=crop",
-    hero_image:"https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=1600&auto=format&fit=crop",
+    og_image:"/recamara.jpg",
+    hero_image:"/recamara.jpg",
     hero_subtitle:"Estética + durabilidad para el día a día.",
     pains:["Selección curada de materiales.","Iluminación correcta por uso.","Mobiliario fijo que ordena."],
     benefits: [
@@ -433,12 +433,12 @@ export const SERVICE_DATA = {
     secondary_keywords:["dirección de obra","control de costos","cronograma"],
     slug:"/servicios/administracion-proyectos-panama/",
     city:"Ciudad de Panamá", zones:["El Cangrejo","Bella Vista","San Francisco","Costa del Este"],
-    phone:"6569-9957", whatsapp:"50765699957", email:"hola@mp-arquitecto.com",
+    phone:"6675-8035", whatsapp:"50766758035", email:"marvinper@mparquitecto.com",
     seo_title:"Administración de proyectos de construcción en Panamá | Dirección de obra",
     seo_description:"PM, control de cronograma, costos y calidad. Menos estrés, más control.",
     canonical_url:"https://mparquitecto.com/servicios/administracion-proyectos-panama/",
-    og_image:"https://images.unsplash.com/photo-1501045661006-fcebe0257c3f?w=1200&auto=format&fit=crop",
-    hero_image:"https://images.unsplash.com/photo-1501045661006-fcebe0257c3f?w=1600&auto=format&fit=crop",
+    og_image:"/RENDER.png",
+    hero_image:"/RENDER.png",
     hero_subtitle:"Planificación, seguimiento y entrega sin sorpresas.",
     pains:["Un solo responsable del proyecto.","Visibilidad real de avances.","Control de costos y cambios."],
     benefits: [
@@ -516,12 +516,12 @@ export const SERVICE_DATA = {
     secondary_keywords:["mantenimiento general panamá","mantenimiento hogares panamá","mantenimiento oficinas panamá"],
     slug:"/servicios/mantenimiento-general-panama/",
     city:"Ciudad de Panamá", zones:["El Cangrejo","Bella Vista","San Francisco","Costa del Este"],
-    phone:"6569-9957", whatsapp:"50765699957", email:"hola@mp-arquitecto.com",
+    phone:"6675-8035", whatsapp:"50766758035", email:"marvinper@mparquitecto.com",
     seo_title:"Mantenimiento general en Panamá | Hogares y oficinas",
     seo_description:"Mantenimiento preventivo y correctivo con respuesta rápida. Agenda diagnóstico.",
     canonical_url:"https://mparquitecto.com/servicios/mantenimiento-general-panama/",
-    og_image:"https://images.unsplash.com/photo-1554995207-c18c203602cb?w=1200&auto=format&fit=crop",
-    hero_image:"https://images.pexels.com/photos/1249611/pexels-photo-1249611.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&fit=crop",
+    og_image:"/CASA.jpg",
+    hero_image:"/antesconsultorio.png",
     hero_subtitle:"Resuelve rápido y bien, sin interrumpir tu día.",
     pains:["Agendamiento ágil.","Trabajo limpio y a tiempo.","Presupuesto claro."],
     benefits: [
@@ -600,14 +600,14 @@ export const SERVICE_DATA = {
     slug: "/servicios/servicio-llave-en-mano-panama/",
     city: "Ciudad de Panamá",
     zones: ["El Cangrejo", "Bella Vista", "San Francisco", "Costa del Este"],
-    phone: "6569-9957",
-    whatsapp: "50765699957",
-    email: "hola@mp-arquitecto.com",
+    phone: "6675-8035",
+    whatsapp: "50766758035",
+    email: "marvinper@mparquitecto.com",
     seo_title: "Servicio Llave en Mano en Panamá | Diseño, Construcción y Entrega Completa",
     seo_description: "Delegue su proyecto de remodelación o construcción. Gestión integral desde el diseño hasta la entrega final sin preocupaciones.",
     canonical_url: "https://mparquitecto.com/servicios/servicio-llave-en-mano-panama/",
-    og_image: "https://images.pexels.com/photos/1571453/pexels-photo-1571453.jpeg?w=1200&auto=format&fit=crop",
-    hero_image: "https://images.pexels.com/photos/1571453/pexels-photo-1571453.jpeg?w=1600&auto=format&fit=crop",
+    og_image: "/CHASETERRAZA.jpg",
+    hero_image: "/CHASETERRAZA.jpg",
     hero_subtitle: "Su proyecto completo, de principio a fin, con un solo responsable.",
     pains: [
       "Evite el estrés de coordinar múltiples proveedores.",
@@ -660,16 +660,16 @@ export const SERVICE_DATA = {
         zone: "San Francisco",
         weeks: "12",
         variance: "+1.5%",
-        before_img: "/CASAI.jpg",
-        after_img: "/CASAIII.jpg"
+        before_img: "/CASA.jpg",
+        after_img: "/CASAIV.jpg"
       },
       {
         title: "Apartamento integral en Costa del Este",
         zone: "Costa del Este",
         weeks: "8",
         variance: "0%",
-        before_img: "https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?w=1200&auto=format&fit=crop",
-        after_img: "https://images.pexels.com/photos/1571453/pexels-photo-1571453.jpeg?w=1200&auto=format&fit=crop"
+        before_img: "/COCINACHASE.jpg",
+        after_img: "/CHASETERRAZA.jpg"
       }
     ],
     process: [
@@ -683,17 +683,17 @@ export const SERVICE_DATA = {
       {
         title: "Proyecto integral en El Cangrejo",
         metrics: "10 semanas · gestión completa",
-        img: "https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?w=1200&auto=format&fit=crop"
+        img: "/COCINACHASE.jpg"
       },
       {
         title: "Casa llave en mano San Francisco",
         metrics: "14 semanas · variación +1%",
-        img: "/CASAIII.jpg"
+        img: "/CASAIV.jpg"
       },
       {
         title: "Oficina completa Bella Vista",
         metrics: "8 semanas · entrega puntual",
-        img: "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?w=1200&auto=format&fit=crop"
+        img: "/oficina1.jpg"
       }
     ],
     testimonials: [

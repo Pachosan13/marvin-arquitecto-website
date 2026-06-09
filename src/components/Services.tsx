@@ -17,7 +17,7 @@ const Services = () => {
       id: 'apartamentos',
       title: 'Apartamentos',
       subtitle: 'Reformas integrales sin sorpresas',
-      image: '/AntyDespcases/phvitri1.jpg',
+      image: '/AntyDespcases/phvitri.jpg',
       gridClass: 'md:col-span-2 md:row-span-1',
       alt: 'remodelación apartamento Costa del Este',
       linkSlug: 'remodelacion-casas-apartamentos-panama'
@@ -44,7 +44,7 @@ const Services = () => {
       id: 'llave-en-mano',
       title: 'Llave en mano',
       subtitle: 'Delegas todo. Nosotros coordinamos',
-      image: 'https://images.pexels.com/photos/1571453/pexels-photo-1571453.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&fit=crop',
+      image: '/CHASETERRAZA.jpg',
       gridClass: 'md:col-span-2 md:row-span-1',
       alt: 'proyecto llave en mano Bella Vista',
       linkSlug: 'servicio-llave-en-mano-panama'
@@ -53,7 +53,7 @@ const Services = () => {
       id: 'interiores',
       title: 'Arquitectura de interiores',
       subtitle: 'Materiales, iluminación y mobiliario',
-      image: '/carrusel/carrusel1.jpg',
+      image: '/carrusel/carrusel4.jpg',
       gridClass: 'md:col-span-2 md:row-span-1',
       alt: 'arquitectura interiores Panamá',
       linkSlug: 'arquitectura-interiores-panama'
@@ -71,7 +71,7 @@ const Services = () => {
       id: 'mantenimiento',
       title: 'Mantenimientos Generales',
       subtitle: 'Reparaciones rápidas y mantenimiento preventivo',
-      image: 'https://images.pexels.com/photos/1249611/pexels-photo-1249611.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&fit=crop',
+      image: '/antesconsultorio.png',
       gridClass: 'md:col-span-2 md:row-span-1',
       alt: 'mantenimiento general casas oficinas Panamá',
       linkSlug: 'mantenimiento-general-panama'

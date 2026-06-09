@@ -1,9 +1,9 @@
+/* React Responsive Carousel Styles (debe ir antes de @tailwind) */
+@import "react-responsive-carousel/lib/styles/carousel.min.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-/* React Responsive Carousel Styles */
-@import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 /* Custom carousel overrides */
 .carousel .slide {
@@ -57,8 +57,14 @@
 }
 
 .carousel .control-dots .dot.selected {
-  background: #6FA27A;
+  background: #ffffff;
   transform: scale(1.2);
+}
+
+/* Menu cascade (movido desde el <style jsx> del Header) */
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(50px); }
+  to { opacity: 1; transform: translateX(0); }
 }
 
 /* Fix for fixed header scroll offset */

@@ -13,7 +13,7 @@ const Results = () => {
   const zones = [
     {
       name: 'Consultorio Punta Pacífica',
-      image: '/IMG_20220422_174902.jpg'
+      image: '/RENDER.png'
     },
     {
       name: 'El Chase',
@@ -25,15 +25,15 @@ const Results = () => {
     },
     {
       name: 'Towncenter',
-      image: '/towncenter2.jpg'
+      image: '/oficina2.jpg'
     },
     {
       name: 'PH Vitri',
-      image: '/AntyDespcases/phvitri2.jpg'
+      image: '/CHASETERRAZA.jpg'
     },
     {
       name: 'Costa del Este',
-      image: '/estetica.jpg'
+      image: '/CHASETERRAZA.jpg'
     }
   ];
 

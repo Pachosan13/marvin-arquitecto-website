@@ -66,7 +66,7 @@ const About = () => {
     upsertMeta("twitter:card", "summary_large_image");
     upsertMeta("twitter:title", title);
     upsertMeta("twitter:description", description);
-    upsertMeta("twitter:image", "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?w=1200&auto=format&fit=crop");
+    upsertMeta("twitter:image", "/oficina1.jpg");
 
     // JSON-LD for Person and WebPage
     injectJsonLd("jsonld-person", {
@@ -244,7 +244,7 @@ const About = () => {
                 Agendar consulta
               </Link>
               <a
-                href="https://wa.me/50700000000?text=Hola%20Marvin%2C%20quiero%20conocer%20más%20sobre%20tu%20experiencia"
+                href="https://wa.me/50766758035?text=Hola%20Marvin%2C%20quiero%20conocer%20más%20sobre%20tu%20experiencia"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="border-2 border-white text-white hover:bg-white hover:text-text-hi px-8 py-3 rounded-lg font-semibold transition-all duration-200"

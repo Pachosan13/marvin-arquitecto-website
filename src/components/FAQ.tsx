@@ -114,7 +114,7 @@ const FAQ = () => {
                   Agendar consulta
                 </button>
                 <a
-                  href="https://wa.me/50700000000?text=Hola%20Marvin%2C%20tengo%20una%20pregunta%20sobre%20sus%20servicios"
+                  href="https://wa.me/50766758035?text=Hola%20Marvin%2C%20tengo%20una%20pregunta%20sobre%20sus%20servicios"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="border-2 border-cta text-cta hover:bg-cta hover:text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200"

@@ -4,15 +4,15 @@ export default {
   theme: {
     extend: {
       colors: {
-        bg: '#F7F5F1',        // Porcelain base
-        section: '#EEE9E2',   // Linen
-        panel: '#E2D7C8',     // Sand
-        'text-hi': '#2B2F33', // Charcoal
-        'text-lo': '#6C6A65', // Greige
-        wood: '#C8A98B',      // Wood accent
-        divider: '#DDD5CC',
-        cta: '#6FA27A',       // Sage
-        'cta-hover': '#5B8E66',
+        bg: '#FFFFFF',        // Pure white base
+        section: '#F7F7F5',   // Whisper off-white
+        panel: '#EFEEEB',     // Light stone
+        'text-hi': '#161616', // Architect near-black
+        'text-lo': '#6B6B6B', // Muted gray
+        wood: '#A07E5A',      // Warm taupe accent (uso minimo)
+        divider: '#E6E4E0',
+        cta: '#161616',       // Black CTA
+        'cta-hover': '#000000',
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],

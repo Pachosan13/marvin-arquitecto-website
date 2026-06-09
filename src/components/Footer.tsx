@@ -77,7 +77,7 @@ const Footer = () => {
                 <div>
                   <div className="text-sm text-white/80 mb-1">WhatsApp</div>
                   <a
-                    href="https://wa.me/50700000000"
+                    href="https://wa.me/50766758035"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-white hover:text-cta transition-colors"
@@ -126,7 +126,7 @@ const Footer = () => {
                 Agendar visita
               </button>
               <a
-                href="https://wa.me/50700000000?text=Hola%20Marvin%2C%20quiero%20más%20información"
+                href="https://wa.me/50766758035?text=Hola%20Marvin%2C%20quiero%20más%20información"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="border border-white/40 text-white hover:bg-white/10 px-6 py-2 rounded-lg font-semibold text-sm transition-all duration-200"
