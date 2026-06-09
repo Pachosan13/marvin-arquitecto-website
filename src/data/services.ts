@@ -14,7 +14,7 @@ export const SERVICE_DATA = {
     seo_description: "Reformas integrales con presupuesto transparente y entregas a tiempo. Agenda tu visita técnica en 48h.",
     canonical_url: "https://mparquitecto.com/servicios/remodelacion-casas-apartamentos-panama/",
     og_image: "/CASA.jpg",
-    hero_image: "/CASAIV.jpg",
+    hero_image: "/carrusel/carrusel2.jpg",
     hero_subtitle: "Diseño + obra con control de tiempos y presupuesto.",
     pains: [
       "Evita retrasos y sobrecostos con alcance y cronograma claros.",
@@ -521,7 +521,7 @@ export const SERVICE_DATA = {
     seo_description:"Mantenimiento preventivo y correctivo con respuesta rápida. Agenda diagnóstico.",
     canonical_url:"https://mparquitecto.com/servicios/mantenimiento-general-panama/",
     og_image:"/CASA.jpg",
-    hero_image:"/antesconsultorio.png",
+    hero_image:"/oficina.jpg",
     hero_subtitle:"Resuelve rápido y bien, sin interrumpir tu día.",
     pains:["Agendamiento ágil.","Trabajo limpio y a tiempo.","Presupuesto claro."],
     benefits: [

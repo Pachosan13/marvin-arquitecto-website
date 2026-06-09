@@ -47,7 +47,7 @@ const Results = () => {
               Resultados comprobados en Panamá
             </h2>
             <p className="text-body text-text-lo mb-8 leading-relaxed">
-              Más de 20 años transformando espacios en Ciudad de Panamá con 
+              Más de 25 años transformando espacios en Ciudad de Panamá con 
               metodología estructurada, presupuestos controlados y entregas puntuales.
             </p>
 

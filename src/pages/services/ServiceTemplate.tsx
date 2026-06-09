@@ -5,8 +5,8 @@ import { ChevronDown, ChevronUp, Shield, Eye, Users, Clipboard, Award, Clock, Ha
 import { SERVICE_DATA } from "../../data/services";
 
 const C = {
-  bg:"#F7F5F1", section:"#EEE9E2", panel:"#E2D7C8",
-  text:"#2B2F33", mute:"#6C6A65", div:"#DDD5CC", cta:"#6FA27A", ctaH:"#5B8E66"
+  bg:"#FFFFFF", section:"#F7F7F5", panel:"#EFEEEB",
+  text:"#161616", mute:"#6B6B6B", div:"#E6E4E0", cta:"#161616", ctaH:"#000000"
 };
 
 function m(name: string, content: string){ if(!content) return; let el=document.querySelector(`meta[name="${name}"]`); if(!el){el=document.createElement("meta");el.setAttribute("name",name);document.head.appendChild(el);} el.setAttribute("content",content);}
@@ -78,28 +78,22 @@ export default function ServiceTemplate(){
   return (
     <div style={{background:C.bg, color:C.text}}>
       {/* HERO */}
-      <section className="relative overflow-hidden rounded-b-2xl">
+      <section className="relative overflow-hidden">
         {/* Hero Background Image */}
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${data.hero_image})` }}
         />
-        
-        {/* Overlay for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30" />
-        
-        <div className="relative max-w-6xl mx-auto px-4 py-24">
-          <h1 className="text-4xl md:text-6xl font-semibold text-white">{data.seo_title}</h1>
-          <p className="mt-4 max-w-2xl text-white/90">{data.hero_subtitle}</p>
-          <div className="mt-6 flex flex-wrap gap-3">
-            <Link to={`/agenda?service=${encodeURIComponent(data.seo_title)}`} className="px-6 py-3 rounded-xl text-white font-semibold" style={{background:C.cta}} data-gtm="HeroCTA_Click">Agendar visita (48h)</Link>
-            <a href="#cases" className="px-6 py-3 rounded-xl border-2 border-white text-white hover:bg-white hover:text-text-hi font-semibold transition-all duration-200">Ver proyectos</a>
-            {wa && <a href={`${wa}?text=Hola%20Marvin%2C%20quiero%20información%20sobre:%20${encodeURIComponent(data.seo_title)}`} target="_blank" rel="noreferrer" className="px-4 py-3 rounded-xl border-2 border-white text-white hover:bg-white hover:text-text-hi transition-all duration-200">WhatsApp</a>}
-          </div>
-          <div className="mt-6 flex flex-wrap gap-2 text-sm" style={{color:C.mute}}>
-            <span className="border rounded-full px-3 py-1 bg-white/20 backdrop-blur-sm border-white/30 text-white">Presupuesto transparente</span>
-            <span className="border rounded-full px-3 py-1 bg-white/20 backdrop-blur-sm border-white/30 text-white">Entrega a tiempo</span>
-            <span className="border rounded-full px-3 py-1 bg-white/20 backdrop-blur-sm border-white/30 text-white">Garantía de acabados</span>
+
+        {/* Overlay sutil para legibilidad */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/35 to-black/25" />
+
+        <div className="relative max-w-6xl mx-auto px-6 py-28 md:py-36">
+          <h1 className="font-serif text-4xl md:text-6xl leading-[1.05] text-white max-w-3xl">{data.service_name}</h1>
+          <p className="mt-5 max-w-xl text-lg text-white/90">{data.hero_subtitle}</p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link to={`/agenda?service=${encodeURIComponent(data.service_name)}`} className="px-7 py-3.5 rounded-xl text-white font-semibold transition-colors hover:bg-black" style={{background:C.cta}} data-gtm="HeroCTA_Click">Agendar visita (48h)</Link>
+            {wa !== "#" && <a href={`${wa}?text=Hola%20Marvin%2C%20quiero%20información%20sobre:%20${encodeURIComponent(data.service_name)}`} target="_blank" rel="noreferrer" className="px-7 py-3.5 rounded-xl border border-white/70 text-white hover:bg-white hover:text-black transition-all duration-200 font-semibold">WhatsApp</a>}
           </div>
         </div>
       </section>
@@ -116,7 +110,7 @@ export default function ServiceTemplate(){
       {/* SCOPE */}
       <section className="py-14">
         <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-3xl md:text-5xl">Alcance del servicio</h2>
+          <h2 className="font-serif text-3xl md:text-5xl">Alcance del servicio</h2>
           <ul className="mt-6 grid md:grid-cols-2 gap-3">
             {data.scope?.map((s: string,i: number)=>(
               <li key={i} className="flex items-start gap-2">
@@ -133,7 +127,7 @@ export default function ServiceTemplate(){
       {data.benefits && data.benefits.length > 0 && (
         <section className="py-14" style={{background:C.section, borderTop:`1px solid ${C.div}`, borderBottom:`1px solid ${C.div}`}}>
           <div className="max-w-6xl mx-auto px-4">
-            <h2 className="text-3xl md:text-5xl mb-4">¿Por qué elegirnos?</h2>
+            <h2 className="font-serif text-3xl md:text-5xl mb-4">¿Por qué elegirnos?</h2>
             <p className="text-lg mb-12" style={{color:C.mute}}>
               Ventajas que nos diferencian en el mercado panameño
             </p>
@@ -201,7 +195,7 @@ export default function ServiceTemplate(){
       {/* PROCESS */}
       <section className="py-14" style={{background:C.section, borderTop:`1px solid ${C.div}`, borderBottom:`1px solid ${C.div}`}}>
         <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-3xl md:text-5xl">Proceso</h2>
+          <h2 className="font-serif text-3xl md:text-5xl">Proceso</h2>
           <ol className="mt-6 grid md:grid-cols-5 gap-4">
             {data.process?.map((s: any,i: number)=>(
               <li key={i} className="rounded-2xl p-5 border" style={{borderColor:C.div, background:C.panel}}>
@@ -244,7 +238,7 @@ export default function ServiceTemplate(){
       {/* MINI FORM */}
       <section id="book-form" className="py-16">
         <div className="max-w-3xl mx-auto px-4 rounded-2xl p-6 border" style={{borderColor:C.div, background:C.panel}}>
-          <h2 className="text-3xl md:text-4xl">Cuéntame tu idea y agenda tu visita (48h)</h2>
+          <h2 className="font-serif text-3xl md:text-4xl">Cuéntame tu idea y agenda tu visita (48h)</h2>
           <p className="mt-2" style={{color:C.mute}}>Respuesta en 24–48h por WhatsApp.</p>
           <form className="grid md:grid-cols-2 gap-4 mt-6" onSubmit={(e)=>{e.preventDefault(); alert("¡Gracias! Te contactaremos por WhatsApp.");}}>
             <div><label className="text-sm">Nombre</label><input required className="w-full rounded-xl border px-3 py-2" style={{borderColor:C.div}} placeholder="Tu nombre"/></div>
@@ -263,7 +257,7 @@ export default function ServiceTemplate(){
       {/* FAQ */}
       <section className="py-14" style={{background:C.section, borderTop:`1px solid ${C.div}`}}>
         <div className="max-w-5xl mx-auto px-4">
-          <h2 className="text-3xl md:text-5xl mb-4">Preguntas frecuentes</h2>
+          <h2 className="font-serif text-3xl md:text-5xl mb-4">Preguntas frecuentes</h2>
           <p className="text-lg mb-12" style={{color:C.mute}}>
             Resolvemos las dudas más comunes sobre este servicio
           </p>
@@ -315,7 +309,7 @@ export default function ServiceTemplate(){
           {/* CTA after FAQ */}
           <div className="text-center mt-12">
             <div className="rounded-2xl p-8 border" style={{borderColor:C.div, background:C.panel}}>
-              <h3 className="text-2xl md:text-3xl mb-4">
+              <h3 className="font-serif text-2xl md:text-3xl mb-4">
                 ¿Tienes alguna otra pregunta?
               </h3>
               <p className="mb-6" style={{color:C.mute}}>

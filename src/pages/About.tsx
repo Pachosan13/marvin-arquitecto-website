@@ -264,7 +264,7 @@ const About = () => {
               Experiencia que transforma espacios
             </h2>
             <p className="text-body text-text-lo leading-relaxed mb-8">
-              Arquitecto panameño con más de 30 años de experiencia especializado en construcciones 
+              Arquitecto panameño con más de 25 años de experiencia especializado en construcciones 
               generales, diseños arquitectónicos, remodelaciones integrales y diseño de interiores. 
               Graduado de la Universidad de Panamá en 1998, ha desarrollado una metodología única que 
               combina diseño funcional con control riguroso de tiempos y presupuestos.
@@ -273,7 +273,7 @@ const About = () => {
             {/* Key Stats */}
             <div className="grid sm:grid-cols-3 gap-8">
               <div className="bg-white rounded-xl p-6 border border-divider">
-                <div className="text-3xl font-bold text-cta mb-2">30+</div>
+                <div className="text-3xl font-bold text-cta mb-2">25+</div>
                 <div className="text-text-lo">Años de experiencia</div>
               </div>
               <div className="bg-white rounded-xl p-6 border border-divider">
@@ -422,7 +422,7 @@ const About = () => {
                 "Cada proyecto es una oportunidad de mejorar la calidad de vida de las personas. 
                 Mi enfoque combina funcionalidad, estética y viabilidad económica para crear 
                 espacios que realmente transformen la experiencia diaria de quienes los habitan. 
-                Con más de 30 años de experiencia, he aprendido que el éxito radica en la 
+                Con más de 25 años de experiencia, he aprendido que el éxito radica en la 
                 atención al detalle y el compromiso con la excelencia."
               </p>
               
@@ -471,7 +471,7 @@ const About = () => {
                 ¿Listo para transformar tu espacio?
               </h2>
               <p className="text-body text-text-lo mb-8">
-                Con más de 30 años de experiencia, estoy aquí para hacer realidad tu proyecto 
+                Con más de 25 años de experiencia, estoy aquí para hacer realidad tu proyecto 
                 con la calidad y transparencia que me caracterizan.
               </p>
               

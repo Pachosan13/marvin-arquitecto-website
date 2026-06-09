@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 const C = {
-  bg:"#F7F5F1", section:"#EEE9E2", panel:"#E2D7C8",
-  text:"#2B2F33", mute:"#6C6A65", div:"#DDD5CC", cta:"#6FA27A", ctaH:"#5B8E66"
+  bg:"#FFFFFF", section:"#F7F7F5", panel:"#EFEEEB",
+  text:"#161616", mute:"#6B6B6B", div:"#E6E4E0", cta:"#161616", ctaH:"#000000"
 };
 
 // helpers SEO/Schema
@@ -45,18 +45,17 @@ export default function Agenda(){
     });
   }, [service]);
 
-  // EMBED GHL — insert script on mount (lazy + preconnect)
+  // GHL booking widget — script oficial de embed (form_embed.js)
   useEffect(()=> {
-    // preconnect
     const pc = document.createElement("link");
     pc.rel = "preconnect";
     pc.href = "https://api.leadconnectorhq.com";
     document.head.appendChild(pc);
 
     const s = document.createElement("script");
-    s.src = "https://api.leadconnectorhq.com/widget/booking/vVPkI8l3JYk4WtIEMl3m";
+    s.src = "https://link.msgsndr.com/js/form_embed.js";
     s.async = true;
-    document.getElementById("ghl-scripts")?.appendChild(s) || document.body.appendChild(s);
+    document.body.appendChild(s);
     return ()=> { s.remove(); };
   }, []);
 
@@ -64,7 +63,7 @@ export default function Agenda(){
     <div style={{background:C.bg, color:C.text}}>
       <section className="relative overflow-hidden rounded-b-2xl">
         <div className="relative max-w-5xl mx-auto px-4 py-16">
-          <h1 className="text-4xl md:text-6xl font-semibold">Agenda tu visita</h1>
+          <h1 className="font-serif text-4xl md:text-6xl">Agenda tu visita</h1>
           <p className="mt-3 max-w-2xl" style={{color:C.mute}}>
             Selecciona fecha y hora en el calendario. Confirmación inmediata. {service ? `Servicio: ${service}.` : ""}
           </p>
@@ -73,23 +72,25 @@ export default function Agenda(){
 
       <section className="py-10" style={{background:C.section, borderTop:`1px solid ${C.div}`, borderBottom:`1px solid ${C.div}`}}>
         <div className="max-w-5xl mx-auto px-4">
-          <div className="rounded-2xl border overflow-hidden" style={{borderColor:C.div, background:C.panel}}>
-            <div 
-              id="ghl-widget" 
-              className="ghl-booking-widget min-h-[600px]"
-              data-widget-id="vVPkI8l3JYk4WtIEMl3m"
+          <div className="rounded-2xl border overflow-hidden bg-white" style={{borderColor:C.div}}>
+            <iframe
+              src="https://api.leadconnectorhq.com/widget/booking/vVPkI8l3JYk4WtIEMl3m"
+              title="Agendar visita con Marvin Pérez"
+              className="w-full block"
+              style={{minHeight:"720px", border:"none"}}
+              scrolling="no"
+            />
+          </div>
+          <div className="mt-6 text-center">
+            <p className="mb-3" style={{color:C.mute}}>¿Prefieres coordinar directo por WhatsApp?</p>
+            <a
+              href="https://wa.me/50766758035?text=Hola%20Marvin%2C%20quiero%20agendar%20una%20visita"
+              target="_blank" rel="noreferrer"
+              className="inline-block px-7 py-3.5 rounded-xl text-white font-semibold transition-colors hover:bg-black"
+              style={{background:C.cta}}
             >
-              {/* Fallback content - will be replaced by GHL widget */}
-              <div className="p-6 text-center">
-                <p className="text-sm mb-4" style={{color:C.mute}}>
-                  Cargando calendario...
-                </p>
-                <p className="text-sm" style={{color:C.mute}}>
-                  Si el calendario no aparece, 
-                  {" "}<a className="underline" href="https://api.leadconnectorhq.com/widget/booking/vVPkI8l3JYk4WtIEMl3m" target="_blank" rel="noreferrer">abre este enlace</a>
-                </p>
-              </div>
-            </div>
+              Agendar por WhatsApp
+            </a>
           </div>
         </div>
       </section>

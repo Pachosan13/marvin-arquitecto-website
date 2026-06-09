@@ -96,7 +96,7 @@ const Hero = () => {
 
             <p className="text-body text-white/90 mb-8 max-w-2xl">
               Diseño funcional + obra con control de tiempos y presupuesto para
-              <strong className="text-white font-semibold"> casas, apartamentos y oficinas</strong>. Más de 20 años de experiencia.
+              <strong className="text-white font-semibold"> casas, apartamentos y oficinas</strong>. Más de 25 años de experiencia.
             </p>
 
             {/* CTAs */}

@@ -42,7 +42,6 @@ const Header = () => {
     { label: 'Servicios', href: 'services', type: 'section' },
     { label: 'Proyectos', href: 'before-after', type: 'section' },
     { label: 'Proceso', href: 'process', type: 'section' },
-    { label: 'Materiales', href: 'materials', type: 'section' },
     { label: 'Sobre el Arquitecto', href: '/sobre-el-arquitecto', type: 'page' },
   ];
 

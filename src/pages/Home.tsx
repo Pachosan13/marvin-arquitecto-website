@@ -6,7 +6,6 @@ import Services from '../components/Services';
 import BeforeAfter from '../components/BeforeAfter';
 import Process from '../components/Process';
 import Results from '../components/Results';
-import MaterialBoard from '../components/MaterialBoard';
 import Testimonials from '../components/Testimonials';
 import ContactForm from '../components/ContactForm';
 import FAQ from '../components/FAQ';
@@ -42,7 +41,6 @@ const Home = () => {
       <BeforeAfter />
       <Process />
       <Results />
-      <MaterialBoard />
       <Testimonials />
       <ContactForm />
       <FAQ />
