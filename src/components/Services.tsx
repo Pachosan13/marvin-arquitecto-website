@@ -35,7 +35,7 @@ const Services = () => {
       id: 'planos',
       title: 'Diseños arquitectónicos y Planos',
       subtitle: 'Planos y permisos',
-      image: '/Render1.png',
+      image: '/Render1.jpg',
       gridClass: 'md:col-span-2 md:row-span-1',
       alt: 'planos arquitectónicos Panamá',
       linkSlug: 'planos-arquitectonicos-panama'
@@ -71,7 +71,7 @@ const Services = () => {
       id: 'mantenimiento',
       title: 'Mantenimientos Generales',
       subtitle: 'Reparaciones rápidas y mantenimiento preventivo',
-      image: '/antesconsultorio.png',
+      image: '/antesconsultorio.jpg',
       gridClass: 'md:col-span-2 md:row-span-1',
       alt: 'mantenimiento general casas oficinas Panamá',
       linkSlug: 'mantenimiento-general-panama'

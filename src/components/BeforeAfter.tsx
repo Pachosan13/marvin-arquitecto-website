@@ -11,9 +11,9 @@ const BeforeAfter = () => {
       location: 'Residencia en El Valle',
       duration: '8 semanas',
       budgetVariation: '+1.2%',
-      image: '/Render1.png',
+      image: '/Render1.jpg',
       alt: 'Residencia moderna en El Valle',
-      gallery: ['/Render1.png', '/CASA.jpg'],
+      gallery: ['/Render1.jpg', '/CASA.jpg'],
     },
     {
       id: 2,
@@ -31,7 +31,7 @@ const BeforeAfter = () => {
       budgetVariation: '+0.8%',
       image: '/COCINACHASE.jpg',
       alt: 'Cocina en residencia Altos del Chase',
-      gallery: ['/COCINACHASE.jpg', '/recamara.jpg', '/Render1.png'],
+      gallery: ['/COCINACHASE.jpg', '/recamara.jpg', '/Render1.jpg'],
     },
     {
       id: 4,

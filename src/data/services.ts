@@ -57,7 +57,7 @@ export const SERVICE_DATA = {
     cases_ab: [
       { title:"Apartamento en Ph Vitri", zone:"El Cangrejo", weeks:"6", variance:"0%", before_img:"/AntyDespcases/phvitri.jpg", after_img:"/AntyDespcases/phvitri.jpg" },
       { title:"Casa en El Chase", zone:"San Francisco", weeks:"10", variance:"+2%", before_img:"/CASA.jpg", after_img:"/CASAIV.jpg" },
-      { title:"Oficina en Bella Vista", zone:"Bella Vista", weeks:"8", variance:"+1%", before_img:"/antesconsultorio.png", after_img:"/oficina.jpg" }
+      { title:"Oficina en Bella Vista", zone:"Bella Vista", weeks:"8", variance:"+1%", before_img:"/antesconsultorio.jpg", after_img:"/oficina.jpg" }
     ],
     process: [
       { step:"Diagnóstico y levantamiento", time:"1 semana" },
@@ -68,7 +68,7 @@ export const SERVICE_DATA = {
     ],
     case_cards: [
       { title:"Cocina  en Betania", metrics:"8 semanas · +20% luz natural", img:"/carrusel/carrusel2.jpg" },
-      { title:"Consultorio en Town Center", metrics:"6 semanas · variación 0%", img:"/RENDER.png" },
+      { title:"Consultorio en Town Center", metrics:"6 semanas · variación 0%", img:"/RENDER.jpg" },
       { title:"Restaurante en Panamá", metrics:"7 semanas · +3 puestos", img:"/AntyDespcases/sushiexpress.jpg" }
     ],
     testimonials: [
@@ -126,7 +126,7 @@ export const SERVICE_DATA = {
     seo_description: "Define tu proyecto con anteproyecto, renders y alcance claro. Te guiamos hasta permisos y presupuesto.",
     canonical_url: "https://mparquitecto.com/servicios/diseno-arquitectonico-panama/",
     og_image: "/planos.jpg",
-    hero_image: "/Render1.png",
+    hero_image: "/Render1.jpg",
     hero_subtitle: "Anteproyecto + renders para decidir con certeza.",
     pains: ["Evita cambios costosos definiendo antes de obra.","Renders para validar estilo y funcionalidad.","Planos y permisos listos."],
     benefits: [
@@ -204,8 +204,8 @@ export const SERVICE_DATA = {
     seo_title:"Construcción general en Panamá | Residencial y comercial",
     seo_description:"Obra civil, ampliaciones y acabados con control de tiempos y costos. Solicita una propuesta.",
     canonical_url:"https://mparquitecto.com/servicios/construccion-general-panama/",
-    og_image:"/RENDER.png",
-    hero_image:"/RENDER.png",
+    og_image:"/RENDER.jpg",
+    hero_image:"/RENDER.jpg",
     hero_subtitle:"Ejecución con presupuesto cerrado y supervisión constante.",
     pains:["Control de tiempos y costos.","Coordinación total de proveedores.","Seguridad y calidad en obra."],
     benefits: [
@@ -437,8 +437,8 @@ export const SERVICE_DATA = {
     seo_title:"Administración de proyectos de construcción en Panamá | Dirección de obra",
     seo_description:"PM, control de cronograma, costos y calidad. Menos estrés, más control.",
     canonical_url:"https://mparquitecto.com/servicios/administracion-proyectos-panama/",
-    og_image:"/RENDER.png",
-    hero_image:"/RENDER.png",
+    og_image:"/RENDER.jpg",
+    hero_image:"/RENDER.jpg",
     hero_subtitle:"Planificación, seguimiento y entrega sin sorpresas.",
     pains:["Un solo responsable del proyecto.","Visibilidad real de avances.","Control de costos y cambios."],
     benefits: [

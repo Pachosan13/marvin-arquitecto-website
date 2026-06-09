@@ -13,7 +13,7 @@ const Results = () => {
   const zones = [
     {
       name: 'Consultorio Punta Pacífica',
-      image: '/RENDER.png'
+      image: '/RENDER.jpg'
     },
     {
       name: 'El Chase',

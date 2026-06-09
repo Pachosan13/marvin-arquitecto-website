@@ -61,7 +61,7 @@ const About = () => {
     upsertProp("og:description", description);
     upsertProp("og:type", "website");
     upsertProp("og:url", url);
-    upsertProp("/marviper.png");
+    upsertProp("/marviper.jpg");
 
     upsertMeta("twitter:card", "summary_large_image");
     upsertMeta("twitter:title", title);
@@ -222,7 +222,7 @@ const About = () => {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: 'url(/marviper.png)'
+            backgroundImage: 'url(/marviper.jpg)'
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent" />
